@@ -6,6 +6,18 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		6B6923CB2D2C25450086E4D3 /* TCACoordinators in Frameworks */ = {isa = PBXBuildFile; productRef = 6B6923CA2D2C25450086E4D3 /* TCACoordinators */; };
+		6B6923CE2D2C25540086E4D3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6B6923CD2D2C25540086E4D3 /* Alamofire */; };
+		6B6923D12D2C25680086E4D3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6B6923D02D2C25680086E4D3 /* Kingfisher */; };
+		6B6923D42D2C25A00086E4D3 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 6B6923D32D2C25A00086E4D3 /* KakaoSDK */; };
+		6B6923D62D2C25A00086E4D3 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6B6923D52D2C25A00086E4D3 /* KakaoSDKAuth */; };
+		6B6923D82D2C25A00086E4D3 /* KakaoSDKCert in Frameworks */ = {isa = PBXBuildFile; productRef = 6B6923D72D2C25A00086E4D3 /* KakaoSDKCert */; };
+		6B6923DA2D2C25A00086E4D3 /* KakaoSDKCertCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6B6923D92D2C25A00086E4D3 /* KakaoSDKCertCore */; };
+		6B6923DC2D2C25A00086E4D3 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 6B6923DB2D2C25A00086E4D3 /* KakaoSDKCommon */; };
+		6B6923DE2D2C25A00086E4D3 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 6B6923DD2D2C25A00086E4D3 /* KakaoSDKUser */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		6B65F9A92D291B06000164A4 /* Whidy-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Whidy-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +35,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B6923DC2D2C25A00086E4D3 /* KakaoSDKCommon in Frameworks */,
+				6B6923D12D2C25680086E4D3 /* Kingfisher in Frameworks */,
+				6B6923D42D2C25A00086E4D3 /* KakaoSDK in Frameworks */,
+				6B6923CB2D2C25450086E4D3 /* TCACoordinators in Frameworks */,
+				6B6923D82D2C25A00086E4D3 /* KakaoSDKCert in Frameworks */,
+				6B6923CE2D2C25540086E4D3 /* Alamofire in Frameworks */,
+				6B6923D62D2C25A00086E4D3 /* KakaoSDKAuth in Frameworks */,
+				6B6923DA2D2C25A00086E4D3 /* KakaoSDKCertCore in Frameworks */,
+				6B6923DE2D2C25A00086E4D3 /* KakaoSDKUser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +86,15 @@
 			);
 			name = "Whidy-iOS";
 			packageProductDependencies = (
+				6B6923CA2D2C25450086E4D3 /* TCACoordinators */,
+				6B6923CD2D2C25540086E4D3 /* Alamofire */,
+				6B6923D02D2C25680086E4D3 /* Kingfisher */,
+				6B6923D32D2C25A00086E4D3 /* KakaoSDK */,
+				6B6923D52D2C25A00086E4D3 /* KakaoSDKAuth */,
+				6B6923D72D2C25A00086E4D3 /* KakaoSDKCert */,
+				6B6923D92D2C25A00086E4D3 /* KakaoSDKCertCore */,
+				6B6923DB2D2C25A00086E4D3 /* KakaoSDKCommon */,
+				6B6923DD2D2C25A00086E4D3 /* KakaoSDKUser */,
 			);
 			productName = "Whidy-iOS";
 			productReference = 6B65F9A92D291B06000164A4 /* Whidy-iOS.app */;
@@ -94,6 +124,13 @@
 			);
 			mainGroup = 6B65F9A02D291B06000164A4;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				6B855BF62D2C24E100DD2353 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				6B6923C92D2C25450086E4D3 /* XCRemoteSwiftPackageReference "TCACoordinators" */,
+				6B6923CC2D2C25540086E4D3 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				6B6923CF2D2C25680086E4D3 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				6B6923D22D2C25A00086E4D3 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6B65F9AA2D291B06000164A4 /* Products */;
 			projectDirPath = "";
@@ -183,6 +220,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -236,6 +274,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -262,8 +301,8 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -275,7 +314,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 6.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				XROS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -304,8 +343,8 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -317,7 +356,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 6.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				XROS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -345,6 +384,97 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6B6923C92D2C25450086E4D3 /* XCRemoteSwiftPackageReference "TCACoordinators" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/johnpatrickmorgan/TCACoordinators.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.1;
+			};
+		};
+		6B6923CC2D2C25540086E4D3 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
+		6B6923CF2D2C25680086E4D3 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.3;
+			};
+		};
+		6B6923D22D2C25A00086E4D3 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.23.0;
+			};
+		};
+		6B855BF62D2C24E100DD2353 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.17.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6B6923CA2D2C25450086E4D3 /* TCACoordinators */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B6923C92D2C25450086E4D3 /* XCRemoteSwiftPackageReference "TCACoordinators" */;
+			productName = TCACoordinators;
+		};
+		6B6923CD2D2C25540086E4D3 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B6923CC2D2C25540086E4D3 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		6B6923D02D2C25680086E4D3 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B6923CF2D2C25680086E4D3 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		6B6923D32D2C25A00086E4D3 /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B6923D22D2C25A00086E4D3 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
+		};
+		6B6923D52D2C25A00086E4D3 /* KakaoSDKAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B6923D22D2C25A00086E4D3 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKAuth;
+		};
+		6B6923D72D2C25A00086E4D3 /* KakaoSDKCert */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B6923D22D2C25A00086E4D3 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCert;
+		};
+		6B6923D92D2C25A00086E4D3 /* KakaoSDKCertCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B6923D22D2C25A00086E4D3 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCertCore;
+		};
+		6B6923DB2D2C25A00086E4D3 /* KakaoSDKCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B6923D22D2C25A00086E4D3 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCommon;
+		};
+		6B6923DD2D2C25A00086E4D3 /* KakaoSDKUser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B6923D22D2C25A00086E4D3 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKUser;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6B65F9A12D291B06000164A4 /* Project object */;
 }
