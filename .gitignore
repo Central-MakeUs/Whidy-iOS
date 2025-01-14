@@ -1,6 +1,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/xcode,cocoapods,swift
 # Edit at https://www.toptal.com/developers/gitignore?templates=xcode,cocoapods,swift
 
+### User
+**/NativeAppKey.swift
+**/RemoteConstants.swift
+
 ### CocoaPods ###
 ## CocoaPods GitIgnore Template
 
