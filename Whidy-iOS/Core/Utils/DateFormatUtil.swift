@@ -44,42 +44,6 @@ class DateFormatUtil {
     static var currentTimeZone: TimeZone {
         return TimeZone.current
     }
-    static var dateFormatter: DateFormatter {
-        return DateFormatter().apply {
-            $0.calendar = Calendar(identifier: .gregorian)
-            $0.timeZone = DateFormatUtil.currentTimeZone
-        }
-    }
-    static func string(_ date: Date, _ format: DateStringFormat) -> String {
-        let dateFormatter = DateFormatUtil.dateFormatter
-        dateFormatter.dateFormat = format.localizedString
-        return dateFormatter.string(from: date)
-    }
-    static func date(_ string: String, _ format: DateStringFormat) -> Date {
-        let dateFormatter = DateFormatUtil.dateFormatter
-        dateFormatter.dateFormat = format.localizedString
-        guard let date = dateFormatter.date(from: string) else {
-            return Date()
-        }
-        return date
-    }
-    static func dateString(_ string: String, _ format: DateStringFormat) -> String {
-        let dateFormatter = DateFormatUtil.dateFormatter
-        dateFormatter.dateFormat = DateStringFormat.yyyyMMdd.localizedString
-        guard let date = dateFormatter.date(from: string) else {
-            return dateFormatter.string(from: Date())
-        }
-        dateFormatter.dateFormat = format.localizedString
-        return dateFormatter.string(from: date)
-    }
-
-    static func today() -> String {
-        DateFormatUtil.string(Date(), .yyyyMMdd)
-    }
-    
-    static func todayTime() -> String {
-        DateFormatUtil.string(Date(), .yyyyMMddHHmmss)
-    }
     
     static func getEndYears( selectYear: Int ) -> [String] {
         
@@ -205,23 +169,12 @@ class DateFormatUtil {
         
         return dayArray
     }
-    
-    static func isValidDate(_ date: Date) -> Bool {
-        if date < minimumDate || date > maximumDate {
-            return false
-        }
         
-        return true
-    }
-    
     static var calendarMaximumYear: Int {
         let maxDisplayYear = 82
         let calendar = Calendar(identifier: .gregorian)
         let currentYear = calendar.component(.year, from: Date())
         return currentYear + maxDisplayYear
     }
-    
-    static let minimumDate = "20000101".date(.yyyyMMdd)
-    static let maximumDate = "\(DateFormatUtil.calendarMaximumYear)1231".date(.yyyyMMdd)
 }
 

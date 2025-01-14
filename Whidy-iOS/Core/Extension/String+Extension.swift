@@ -237,13 +237,6 @@ extension String {
         return attributedString
     }
     
-    func date(_ format: DateStringFormat) -> Date {
-        return DateFormatUtil.date(self, format)
-    }
-    func dateString(_ format: DateStringFormat) -> String {
-        return DateFormatUtil.dateString(self, format)
-    }
-    
     func removingLeadingSpaces() -> String {
         var result = self
         while result.first == " " {
