@@ -1,5 +1,5 @@
 {
-  "originHash" : "2683739d92c051322b2b5a74b31d8064cf06aa7f4cbb5d23814c3183c978505f",
+  "originHash" : "72ea9733447791b005a0896d8b3f2eb6f173141a88a9cf2b3e22e75fad07906c",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -152,6 +152,24 @@
       "state" : {
         "revision" : "0687f71944021d616d34d922343dcef086855920",
         "version" : "600.0.1"
+      }
+    },
+    {
+      "identity" : "swiftybeaver",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwiftyBeaver/SwiftyBeaver.git",
+      "state" : {
+        "revision" : "8cba041db09596183331d123f337d0eb2e6e8e91",
+        "version" : "2.1.1"
+      }
+    },
+    {
+      "identity" : "swiftyuserdefaults",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sunshinejr/SwiftyUserDefaults.git",
+      "state" : {
+        "revision" : "f66bcd04088582c8fbb5cb8554d577e303bae396",
+        "version" : "5.3.0"
       }
     },
     {

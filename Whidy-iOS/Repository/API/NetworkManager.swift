@@ -9,7 +9,7 @@ import Foundation
 import ComposableArchitecture
 import Alamofire
 
-final class NetworkManager {
+final class NetworkManager : Sendable {
     
     static let shared = NetworkManager()
     
@@ -18,46 +18,6 @@ final class NetworkManager {
         let configuration = URLSessionConfiguration.af.default
         return Session(configuration: configuration, serverTrustManager: manager)
     }()
-    
-    func requestAPIWithSNS<T:Decodable>(router : URLRequestConvertible, of type : T.Type, isLog : Bool = true) async throws -> T {
-        
-        var urlRequest =  try router.asURLRequest()
-        urlRequest.timeoutInterval = 40
-        
-        useRequestLog(urlRequest)
-        
-        return try await withCheckedThrowingContinuation { continuation in
-            AF.request(urlRequest)
-                .validate(statusCode: RemoteConstants.httpStatusValidRange)
-                .responseDecodable(of: type, emptyResponseCodes: [200]) { response in
-                    switch response.result {
-                    case let .success(res):
-                        continuation.resume(returning: res)
-                        if isLog {
-                            self.useResponseLog(data: response.data!)
-                        }
-                        
-                    //FIXME: - Error Handligng 필요
-                    case let .failure(error):
-                        if let errorData = response.data {
-                            self.useResponseLog(data: response.data!, error: true)
-                            Logger.error(error)
-                            do {
-                                let networkError = try JSONDecoder().decode(ErrorResponse.self, from: errorData)
-                                let apiError = APIError(error: networkError)
-                                continuation.resume(throwing: apiError)
-                            } catch {
-                                // decoding Error
-                                continuation.resume(throwing: APIError.decodingError)
-                            }
-                        } else {
-                            continuation.resume(throwing: error)
-                        }
-                    }
-                }
-        }
-    }
-
     
     func requestAPI<T:Decodable>(router : URLRequestConvertible, of type : T.Type, isLog : Bool = true) async throws -> T {
         
