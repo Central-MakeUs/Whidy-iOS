@@ -2,7 +2,7 @@
 //  Whidy_iOSApp.swift
 //  Whidy-iOS
 //
-//  Created by Namuplanet on 1/4/25.
+//  Created by JinwooLee on 1/4/25.
 //
 
 import SwiftUI

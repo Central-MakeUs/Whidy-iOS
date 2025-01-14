@@ -1,8 +1,8 @@
 //
 //  Int+Extension.swift
-//  z-car
+//  Whidy-iOS
 //
-//  Created by Namuplanet on 9/4/24.
+//  Created by JinwooLee on 9/4/24.
 //
 
 import Foundation

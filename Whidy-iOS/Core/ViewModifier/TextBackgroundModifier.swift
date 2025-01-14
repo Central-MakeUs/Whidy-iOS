@@ -1,8 +1,8 @@
 //
 //  TextBackgroundModifier.swift
-//  z-car
+//  Whidy-iOS
 //
-//  Created by Namuplanet on 9/12/24.
+//  Created by JinwooLee on 9/12/24.
 //
 
 import SwiftUI

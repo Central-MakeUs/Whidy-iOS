@@ -2,8 +2,7 @@
 //  Enviroment.swift
 //  EasyLab
 //
-//  Created by KyuHo.Son on 2022/03/21.
-//  Copyright © 2022 EasyLab Teams. All rights reserved.
+//  Created by JinwooLee 2022/03/21.
 //
 
 import SwiftUI

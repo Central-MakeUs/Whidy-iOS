@@ -1,8 +1,8 @@
 //
 //  UIDevice+Extension.swift
-//  z-car
+//  Whidy-iOS
 //
-//  Created by Namuplanet on 11/20/24.
+//  Created by JinwooLee on 11/20/24.
 //
 
 import SwiftUI

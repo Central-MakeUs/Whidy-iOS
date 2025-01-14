@@ -1,8 +1,8 @@
 //
 //  AuthRouter.swift
-//  z-car
+//  Whidy-iOS
 //
-//  Created by Namuplanet on 8/26/24.
+//  Created by JinwooLee on 8/26/24.
 //
 
 import Foundation

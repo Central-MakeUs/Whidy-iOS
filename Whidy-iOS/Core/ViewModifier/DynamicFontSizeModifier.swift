@@ -1,8 +1,8 @@
 //
 //  DynamicFontSizeModifier.swift
-//  z-car
+//  Whidy-iOS
 //
-//  Created by Namuplanet on 10/14/24.
+//  Created by JinwooLee on 10/14/24.
 //
 
 import SwiftUI

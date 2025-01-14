@@ -1,8 +1,8 @@
 //
 //  NavigationBarModifier.swift
-//  z-car
+//  Whidy-iOS
 //
-//  Created by Namuplanet on 9/6/24.
+//  Created by JinwooLee on 9/6/24.
 //
 
 import UIKit

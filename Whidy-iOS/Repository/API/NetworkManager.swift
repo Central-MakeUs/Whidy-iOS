@@ -1,8 +1,8 @@
 //
 //  NetworkManager.swift
-//  z-car
+//  Whidy-iOS
 //
-//  Created by Namuplanet on 8/26/24.
+//  Created by JinwooLee on 8/26/24.
 //
 
 import Foundation
@@ -14,7 +14,7 @@ final class NetworkManager {
     static let shared = NetworkManager()
     
     private let session: Session = {
-        let manager = ServerTrustManager(evaluators: ["qapi.z-car.co.kr" : DisabledTrustEvaluator()])
+        let manager = ServerTrustManager(evaluators: ["" : DisabledTrustEvaluator()])
         let configuration = URLSessionConfiguration.af.default
         return Session(configuration: configuration, serverTrustManager: manager)
     }()

@@ -1,8 +1,8 @@
 //
 //  Notification.name+Extension.swift
-//  z-car
+//  Whidy-iOS
 //
-//  Created by Namuplanet on 8/29/24.
+//  Created by JinwooLee on 8/29/24.
 //
 
 import Foundation

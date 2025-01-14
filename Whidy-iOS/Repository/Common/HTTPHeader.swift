@@ -1,8 +1,8 @@
 //
 //  HTTPHeader.swift
-//  z-car
+//  Whidy-iOS
 //
-//  Created by Namuplanet on 8/26/24.
+//  Created by JinwooLee on 8/26/24.
 //
 
 import Foundation
@@ -26,7 +26,6 @@ enum HTTPHeader : String {
         case .contentType:
             return "application/json"
         case .deviceName:
-//            return UIDevice.current.name // Full Name 사용시 header 오류 발생
             return "iPhone"
         case .osKind:
             return "04"
@@ -37,7 +36,7 @@ enum HTTPHeader : String {
         case .appKind:
             return "02"
         case .appTypeCd:
-            return "01" // 앱 구분(01: Z-CAR, 02: Autosaving)
+            return "01"
         default :
             return ""
         }

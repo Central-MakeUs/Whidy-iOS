@@ -1,8 +1,8 @@
 //
 //  Float+Extension.swift
-//  z-car
+//  Whidy-iOS
 //
-//  Created by Namuplanet on 9/10/24.
+//  Created by JinwooLee on 9/10/24.
 //
 
 import Foundation

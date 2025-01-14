@@ -33,20 +33,11 @@ enum APIError : Error, Equatable, LocalizedError {
     }
         
     enum ErrorType {
-        case E30006(message:String)
-        case E41001(message:String)
-        case E40003(message:String)
-        case E00002(message:String)
         case unknown
         
         var errorMessage: String {
             switch self {
-            case let .E30006(message),
-                 let .E41001(message),
-                 let .E40003(message),
-                let .E00002(message):
-                return message
-            case .unknown:
+            default:
                 return ""
             }
         }
@@ -58,14 +49,7 @@ enum APIError : Error, Equatable, LocalizedError {
     
     static func networkErrorType(error : APIError) -> ErrorType {
         switch error.errorDescription {
-        case "30006":
-            return .E30006(message: error.errorMessage)
-        case "41001":
-            return .E41001(message: error.errorMessage)
-        case "40003":
-            return .E40003(message: error.errorMessage)
-        case "00002":
-            return .E00002(message: error.errorMessage)
+
         default:
             return .unknown
         }

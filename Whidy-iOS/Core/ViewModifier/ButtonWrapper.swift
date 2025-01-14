@@ -1,8 +1,8 @@
 //
 //  ButtonWrapper.swift
-//  z-car
+//  Whidy-iOS
 //
-//  Created by Namuplanet on 8/27/24.
+//  Created by JinwooLee on 8/27/24.
 //
 
 import SwiftUI

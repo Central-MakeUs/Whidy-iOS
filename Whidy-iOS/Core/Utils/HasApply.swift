@@ -1,8 +1,8 @@
 //
 //  HasApply.swift
-//  z-car
+//  Whidy-iOS
 //
-//  Created by Namuplanet on 9/16/24.
+//  Created by JinwooLee on 9/16/24.
 //
 
 import Foundation

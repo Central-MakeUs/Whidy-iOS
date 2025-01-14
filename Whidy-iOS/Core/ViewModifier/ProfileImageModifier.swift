@@ -1,8 +1,8 @@
 //
 //  ProfileImageModifier.swift
-//  z-car
+//  Whidy-iOS
 //
-//  Created by Namuplanet on 9/5/24.
+//  Created by JinwooLee on 9/5/24.
 //
 
 import SwiftUI
