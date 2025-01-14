@@ -20,12 +20,3 @@ struct AppVersionResponse : Decodable {
         case message
     }
 }
-
-extension AppVersionResponse {
-    func toDomain() -> AppVersionInfo {
-        return .init(currentVersion: currentVersion,
-                     forceUpdate: forceUpdate,
-                     lastVersion: lastVersion,
-                     message: message)
-    }
-}

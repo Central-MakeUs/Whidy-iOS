@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 @main
 struct Whidy_iOSApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootCoordinatorView(store: Store(initialState: .initialState, reducer: {
+                RootCoordinator()
+            }))
         }
     }
 }

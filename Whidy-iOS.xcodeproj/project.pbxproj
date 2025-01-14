@@ -60,6 +60,13 @@
 		6B6276922D35FFF100843C9E /* EmptyResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6276912D35FFF100843C9E /* EmptyResponseModel.swift */; };
 		6B6276932D35FFF100843C9E /* AppVersionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B62768F2D35FFF100843C9E /* AppVersionResponse.swift */; };
 		6B6276942D35FFF100843C9E /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6276902D35FFF100843C9E /* ErrorResponse.swift */; };
+		6B6276992D36199700843C9E /* RootCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6276982D36199700843C9E /* RootCoordinatorView.swift */; };
+		6B62769B2D3619B500843C9E /* RootCoordinatorFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B62769A2D3619B500843C9E /* RootCoordinatorFeature.swift */; };
+		6B62769F2D361C2100843C9E /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B62769E2D361C2100843C9E /* OnboardingCoordinator.swift */; };
+		6B6276A12D361CE300843C9E /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6276A02D361CE300843C9E /* OnboardingScreen.swift */; };
+		6B6276A32D361D1400843C9E /* OnboardingScreen+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6276A22D361D1400843C9E /* OnboardingScreen+Identifiable.swift */; };
+		6B6276A72D361F1100843C9E /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6276A62D361F1100843C9E /* AuthView.swift */; };
+		6B6276A92D361F4100843C9E /* AuthFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6276A82D361F4100843C9E /* AuthFeature.swift */; };
 		6B6923CB2D2C25450086E4D3 /* TCACoordinators in Frameworks */ = {isa = PBXBuildFile; productRef = 6B6923CA2D2C25450086E4D3 /* TCACoordinators */; };
 		6B6923CE2D2C25540086E4D3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6B6923CD2D2C25540086E4D3 /* Alamofire */; };
 		6B6923D12D2C25680086E4D3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6B6923D02D2C25680086E4D3 /* Kingfisher */; };
@@ -124,6 +131,13 @@
 		6B62768F2D35FFF100843C9E /* AppVersionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionResponse.swift; sourceTree = "<group>"; };
 		6B6276902D35FFF100843C9E /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		6B6276912D35FFF100843C9E /* EmptyResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResponseModel.swift; sourceTree = "<group>"; };
+		6B6276982D36199700843C9E /* RootCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorView.swift; sourceTree = "<group>"; };
+		6B62769A2D3619B500843C9E /* RootCoordinatorFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorFeature.swift; sourceTree = "<group>"; };
+		6B62769E2D361C2100843C9E /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
+		6B6276A02D361CE300843C9E /* OnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreen.swift; sourceTree = "<group>"; };
+		6B6276A22D361D1400843C9E /* OnboardingScreen+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnboardingScreen+Identifiable.swift"; sourceTree = "<group>"; };
+		6B6276A62D361F1100843C9E /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		6B6276A82D361F4100843C9E /* AuthFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFeature.swift; sourceTree = "<group>"; };
 		6B65F9A92D291B06000164A4 /* Whidy-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Whidy-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -159,6 +173,8 @@
 		6B6275672D35EC7D00843C9E /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				6B62769C2D361B1D00843C9E /* Coordinator */,
+				6B62769D2D361B2700843C9E /* Auth */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -166,6 +182,7 @@
 		6B6275682D35EC7D00843C9E /* Root */ = {
 			isa = PBXGroup;
 			children = (
+				6B6276952D36197000843C9E /* Coordinator */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -174,8 +191,8 @@
 			isa = PBXGroup;
 			children = (
 				6B6275682D35EC7D00843C9E /* Root */,
-				6B6275662D35EC7D00843C9E /* Main */,
 				6B6275672D35EC7D00843C9E /* Onboarding */,
+				6B6275662D35EC7D00843C9E /* Main */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -352,6 +369,66 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		6B6276952D36197000843C9E /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				6B6276962D36198600843C9E /* View */,
+				6B6276972D36198B00843C9E /* Feature */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		6B6276962D36198600843C9E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6B6276982D36199700843C9E /* RootCoordinatorView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6B6276972D36198B00843C9E /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				6B62769A2D3619B500843C9E /* RootCoordinatorFeature.swift */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		6B62769C2D361B1D00843C9E /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				6B62769E2D361C2100843C9E /* OnboardingCoordinator.swift */,
+				6B6276A02D361CE300843C9E /* OnboardingScreen.swift */,
+				6B6276A22D361D1400843C9E /* OnboardingScreen+Identifiable.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		6B62769D2D361B2700843C9E /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				6B6276A42D361D2F00843C9E /* View */,
+				6B6276A52D361D3300843C9E /* Feature */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		6B6276A42D361D2F00843C9E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6B6276A62D361F1100843C9E /* AuthView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6B6276A52D361D3300843C9E /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				6B6276A82D361F4100843C9E /* AuthFeature.swift */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
 		6B65F9A02D291B06000164A4 = {
 			isa = PBXGroup;
 			children = (
@@ -490,21 +567,28 @@
 				6B6276892D35FDD000843C9E /* Color.swift in Sources */,
 				6B62763D2D35EFFB00843C9E /* DateFormatUtil.swift in Sources */,
 				6B62763E2D35EFFB00843C9E /* StringUtil.swift in Sources */,
+				6B62769F2D361C2100843C9E /* OnboardingCoordinator.swift in Sources */,
 				6B6276402D35EFFB00843C9E /* DynamicFontSizeModifier.swift in Sources */,
+				6B6276A72D361F1100843C9E /* AuthView.swift in Sources */,
 				6B6276422D35EFFB00843C9E /* TextBackgroundModifier.swift in Sources */,
 				6B6276442D35EFFB00843C9E /* NormalTextLabelModifier2.swift in Sources */,
 				6B6276732D35F02B00843C9E /* NetworkManager+Auth.swift in Sources */,
+				6B6276A32D361D1400843C9E /* OnboardingScreen+Identifiable.swift in Sources */,
 				6B6276742D35F02B00843C9E /* NativeAppKey.swift in Sources */,
 				6B6276782D35F02B00843C9E /* APIError.swift in Sources */,
+				6B62769B2D3619B500843C9E /* RootCoordinatorFeature.swift in Sources */,
 				6B62767C2D35F02B00843C9E /* NetworkManager.swift in Sources */,
 				6B6276452D35EFFB00843C9E /* NavigationBarModifier.swift in Sources */,
+				6B6276A12D361CE300843C9E /* OnboardingScreen.swift in Sources */,
 				6B6276472D35EFFB00843C9E /* RedactedModifier.swift in Sources */,
 				6B6276482D35EFFB00843C9E /* ButtonWrapper.swift in Sources */,
 				6B6276492D35EFFB00843C9E /* FontModifier.swift in Sources */,
 				6B62764A2D35EFFB00843C9E /* NetworkMonitor.swift in Sources */,
 				6B6275F22D35EFE200843C9E /* Notification.name+Extension.swift in Sources */,
 				6B6275F32D35EFE200843C9E /* Array+Extension.swift in Sources */,
+				6B6276992D36199700843C9E /* RootCoordinatorView.swift in Sources */,
 				6B6275F42D35EFE200843C9E /* String+Extension.swift in Sources */,
+				6B6276A92D361F4100843C9E /* AuthFeature.swift in Sources */,
 				6B6275F52D35EFE200843C9E /* UIDevice+Extension.swift in Sources */,
 				6B6275F62D35EFE200843C9E /* UserDefaults+Extension.swift in Sources */,
 				6B6276872D35FCDD00843C9E /* OAuthType.swift in Sources */,
