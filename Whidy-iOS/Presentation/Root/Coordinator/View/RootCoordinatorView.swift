@@ -15,7 +15,9 @@ struct RootCoordinatorView: View {
         WithPerceptionTracking {
             ZStack {
                 if store.isLoggined {
-                    //TODO: - MainCoordinatorView
+                    MainCoordinatorView(store: store.scope(state: \.main, action: \.main))
+                        .transition(.opacity.animation(.easeIn))
+                        .zIndex(1)
                 } else {
                     OnboardingCoordinatorView(store: store.scope(state: \.onboarding, action: \.onboarding))
                         .transition(.opacity.animation(.easeIn))

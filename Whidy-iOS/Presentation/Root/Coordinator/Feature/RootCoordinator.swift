@@ -1,5 +1,5 @@
 //
-//  RootCoordinatorFeature.swift
+//  RootCoordinator.swift
 //  Whidy-iOS
 //
 //  Created by Namuplanet on 1/14/25.
@@ -13,16 +13,16 @@ struct RootCoordinator {
     @ObservableState
     struct State: Equatable {
         static let initialState = State(
-            onboarding: .initialState)
+            onboarding: .initialState, main: .initialState)
         var onboarding : OnboardingCoordinator.State
-//        var main : MainCoordinator.State
-        var isLoggined : Bool = false
+        var main : MainCoordinator.State
+        var isLoggined : Bool = true
     }
     
     enum Action : BindableAction {
         case binding(BindingAction<State>)
         case onboarding(OnboardingCoordinator.Action)
-//        case main(MainCoordinator.Action)
+        case main(MainCoordinator.Action)
         case viewTransition(ViewTransition)
         case networkResponse(NetworkReponse)
         case anyAction(AnyAction)
@@ -47,9 +47,9 @@ struct RootCoordinator {
         Scope(state: \.onboarding, action: \.onboarding) {
             OnboardingCoordinator()
         }
-//        
-//        Scope(state: \.main, action: \.main) {
-//            MainCoordinator()
-//        }
+        
+        Scope(state: \.main, action: \.main) {
+            MainCoordinator()
+        }
     }
 }
