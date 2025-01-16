@@ -9,6 +9,9 @@ import Foundation
 import Alamofire
 
 extension NetworkManager {
+    func getAuth(authType : OAuthType) -> URL {
+        return AuthRouter.redirect(authType).fullUrl!
+    }
     
 //    func appVersion() async -> Result<AppVersionInfo, APIError> {
 //        do {

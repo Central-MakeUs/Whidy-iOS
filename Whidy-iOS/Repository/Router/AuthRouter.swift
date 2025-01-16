@@ -75,4 +75,13 @@ extension AuthRouter : TargetType {
             return nil
         }
     }
+    
+    var fullUrl: URL? {
+        switch self {
+        case .redirect:
+            return URL(string: "\(baseURL)/\(path)")
+        default:
+            return nil
+        }
+    }
 }
