@@ -19,12 +19,21 @@ struct OnboardingCoordinatorView : View {
             case let .auth(store):
                 AuthView(store: store)
                     .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+            case let .member(store):
+                MemberView(store: store)
             case let .web(store):
                 WebView(store: store)
             }
         }
         .onAppear {
 //            store.send(.onAppear)
+        }
+        .onOpenURL { url in
+            Logger.debug("Redirect Url : \(url), isDeepLink : \(url.isDeepLink), url.deeplinkComponent : \(String(describing: url.queryParameters)), host : \(url.pageIdentifier) 🐼🐼🐼🐼🐼🐼🐼🐼🐼")
+            
+            if url.isDeepLink {
+                store.send(.deepLink(.handler(url.pageIdentifier)))
+            }
         }
     }
 }
@@ -40,6 +49,11 @@ struct OnboardingCoordinator {
     
     enum Action {
         case router(IdentifiedRouterActionOf<OnbaordingScreen>)
+        case deepLink(DeepLink)
+    }
+    
+    enum DeepLink {
+        case handler(DeepLinkPath)
     }
     
     var body : some ReducerOf<Self> {
@@ -50,8 +64,18 @@ struct OnboardingCoordinator {
                 
                 state.routes.presentSheet(.web(.init(url: url)))
                 
-            case .router(.routeAction(id: .web, action: .web(.kakoLoginCancel))):
+            case .router(.routeAction(id: .web, action: .web(.dismiss))):
                 state.routes.dismiss()
+                
+            case let .deepLink(.handler(path)):
+                switch path {
+                case .home:
+                    Logger.debug("Home으로 이동, parameter : \(path.parameter)")
+                case .signup:
+                    Logger.debug("signup으로 이동,  parameter : \(path.parameter)")
+                default:
+                    break
+                }
                 
             default:
                 break

@@ -39,6 +39,7 @@ struct WebView : UIViewRepresentable {
             self.parent = parent
         }
         
+        /// RedirectURL Handler
         func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
             
             guard let urlString = webView.url?.absoluteString else { return }
@@ -47,16 +48,25 @@ struct WebView : UIViewRepresentable {
         }
         
         func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-            if let requestURL = navigationAction.request.url {
-                //TODO: - 확실한 조건이 필요할 듯.. 현재는 error가 contain 되었을 때
-                if requestURL.absoluteString.contains("error") {
-                    decisionHandler(.cancel) // 요청 취소
+            if let url = navigationAction.request.url {
+                // 딥링크인지 확인
+                if url.isDeepLink { // 딥링크 URL 스킴
+                    UIApplication.shared.open(url) { success in
+                        if success {
+                            Logger.debug("딥링크 실행 성공: \(url.absoluteString)")
+                        } else {
+                            Logger.debug("딥링크 실행 실패")
+                        }
+                    }
+                    
+                    decisionHandler(.cancel) // Redirect 중단
                     return
                 }
             }
-            decisionHandler(.allow) // 요청 허용
+            decisionHandler(.allow) // Redirect 허용
         }
         
+        //FIXME: - Error 타입에 따라 Action 정의 필요함
         /// 호출 시점: 네비게이션 중에 실패
         func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
             Logger.error("Navigation error: \(error)")
@@ -64,9 +74,8 @@ struct WebView : UIViewRepresentable {
         
         /// 호출 시점: 초기 로드 요청 단계에서 실패
         func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-            
-            self.parent.store.send(.kakoLoginCancel)
             Logger.error("Provisional navigation error: \(error)")
+            self.parent.store.send(.dismiss)
         }
         
     }
@@ -82,14 +91,14 @@ struct WebFeature {
     }
     
     enum Action {
-        case kakoLoginCancel
+        case dismiss
     }
 
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-            case .kakoLoginCancel:
-                Logger.debug("KakaoLogin Cancel")
+            case .dismiss:
+                Logger.debug("webView dismiss")
             }
             return .none
         }
