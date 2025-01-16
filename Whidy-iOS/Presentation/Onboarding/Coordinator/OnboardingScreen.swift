@@ -11,6 +11,7 @@ import ComposableArchitecture
 @Reducer(state: .equatable)
 enum OnbaordingScreen {
     case auth(AuthFeature)
+    case member(MemberFeature)
     case web(WebFeature)
 }
 

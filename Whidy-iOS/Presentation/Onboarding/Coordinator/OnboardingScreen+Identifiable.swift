@@ -12,6 +12,8 @@ extension OnbaordingScreen.State : Identifiable {
         switch self {
         case .auth:
                 .auth
+        case .member:
+                .member
         case .web:
                 .web
         }
@@ -19,6 +21,7 @@ extension OnbaordingScreen.State : Identifiable {
     
     enum ID : Identifiable {
         case auth
+        case member
         case web
         
         var id : ID { self }
