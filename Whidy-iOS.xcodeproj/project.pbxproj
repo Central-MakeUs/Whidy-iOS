@@ -27,6 +27,10 @@
 		6B6220A52D388D8500C5F2C8 /* MyPageFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6220A02D388D8500C5F2C8 /* MyPageFeature.swift */; };
 		6B6220A62D388D8500C5F2C8 /* MyPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B62209A2D388D8500C5F2C8 /* MyPageCoordinator.swift */; };
 		6B6220AA2D3896E800C5F2C8 /* WhidySplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6220A92D3896E800C5F2C8 /* WhidySplashView.swift */; };
+		6B6220AD2D38A4C000C5F2C8 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6220AC2D38A4BF00C5F2C8 /* WebView.swift */; };
+		6B6220B42D38DFB000C5F2C8 /* MemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6220B32D38DFB000C5F2C8 /* MemberView.swift */; };
+		6B6220B62D38DFB900C5F2C8 /* MemberFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6220B52D38DFB900C5F2C8 /* MemberFeature.swift */; };
+		6B6220B82D38E28E00C5F2C8 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6220B72D38E28E00C5F2C8 /* URL+Extension.swift */; };
 		6B62759A2D35EC7D00843C9E /* Whidy_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B62756F2D35EC7D00843C9E /* Whidy_iOSApp.swift */; };
 		6B62759B2D35EC7D00843C9E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B62756A2D35EC7D00843C9E /* Preview Assets.xcassets */; };
 		6B62759C2D35EC7D00843C9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B62756C2D35EC7D00843C9E /* Assets.xcassets */; };
@@ -119,6 +123,11 @@
 		6B62209E2D388D8500C5F2C8 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		6B6220A02D388D8500C5F2C8 /* MyPageFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageFeature.swift; sourceTree = "<group>"; };
 		6B6220A92D3896E800C5F2C8 /* WhidySplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhidySplashView.swift; sourceTree = "<group>"; };
+		6B6220AC2D38A4BF00C5F2C8 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		6B6220AE2D38D6F300C5F2C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6B6220B32D38DFB000C5F2C8 /* MemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberView.swift; sourceTree = "<group>"; };
+		6B6220B52D38DFB900C5F2C8 /* MemberFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberFeature.swift; sourceTree = "<group>"; };
+		6B6220B72D38E28E00C5F2C8 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		6B62756A2D35EC7D00843C9E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6B62756C2D35EC7D00843C9E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6B62756E2D35EC7D00843C9E /* Whidy_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Whidy_iOS.entitlements; sourceTree = "<group>"; };
@@ -291,6 +300,39 @@
 			path = Feature;
 			sourceTree = "<group>";
 		};
+		6B6220AB2D38A4B500C5F2C8 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				6B6220AC2D38A4BF00C5F2C8 /* WebView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		6B6220B02D38D81D00C5F2C8 /* Member */ = {
+			isa = PBXGroup;
+			children = (
+				6B6220B22D38DFA700C5F2C8 /* View */,
+				6B6220B12D38DFA300C5F2C8 /* Feature */,
+			);
+			path = Member;
+			sourceTree = "<group>";
+		};
+		6B6220B12D38DFA300C5F2C8 /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				6B6220B52D38DFB900C5F2C8 /* MemberFeature.swift */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		6B6220B22D38DFA700C5F2C8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6B6220B32D38DFB000C5F2C8 /* MemberView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		6B6275662D35EC7D00843C9E /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,6 +349,7 @@
 			children = (
 				6B62769C2D361B1D00843C9E /* Coordinator */,
 				6B62769D2D361B2700843C9E /* Auth */,
+				6B6220B02D38D81D00C5F2C8 /* Member */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -322,6 +365,7 @@
 		6B6275692D35EC7D00843C9E /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				6B6220AB2D38A4B500C5F2C8 /* Common */,
 				6B6275682D35EC7D00843C9E /* Root */,
 				6B6275672D35EC7D00843C9E /* Onboarding */,
 				6B6275662D35EC7D00843C9E /* Main */,
@@ -340,6 +384,7 @@
 		6B6275702D35EC7D00843C9E /* Whidy-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				6B6220AE2D38D6F300C5F2C8 /* Info.plist */,
 				6B6275E52D35EFE200843C9E /* Core */,
 				6B6275692D35EC7D00843C9E /* Presentation */,
 				6B62764B2D35F00E00843C9E /* Repository */,
@@ -379,6 +424,7 @@
 				6B6275DD2D35EFE200843C9E /* Publisher+Extension.swift */,
 				6B6275DE2D35EFE200843C9E /* Array+Extension.swift */,
 				6B6275DF2D35EFE200843C9E /* UIDevice+Extension.swift */,
+				6B6220B72D38E28E00C5F2C8 /* URL+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -686,6 +732,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B6220B42D38DFB000C5F2C8 /* MemberView.swift in Sources */,
 				6B6275E62D35EFE200843C9E /* Logger.swift in Sources */,
 				6B6275E72D35EFE200843C9E /* LoginType.swift in Sources */,
 				6B6276922D35FFF100843C9E /* EmptyResponseModel.swift in Sources */,
@@ -720,6 +767,7 @@
 				6B6276372D35EFFB00843C9E /* AppStoreCheckManager.swift in Sources */,
 				6B62207F2D37AAF500C5F2C8 /* StudyMapScreen+Identifiable.swift in Sources */,
 				6B6220802D37AAF500C5F2C8 /* StudyMapScreen.swift in Sources */,
+				6B6220AD2D38A4C000C5F2C8 /* WebView.swift in Sources */,
 				6B62763A2D35EFFB00843C9E /* ProfileImageModifier.swift in Sources */,
 				6B62763B2D35EFFB00843C9E /* TextToButtonModifier.swift in Sources */,
 				6B62763C2D35EFFB00843C9E /* NormalTextFieldModifier.swift in Sources */,
@@ -753,9 +801,11 @@
 				6B62207C2D37AA9700C5F2C8 /* StudyMapCoordinator.swift in Sources */,
 				6B6275F42D35EFE200843C9E /* String+Extension.swift in Sources */,
 				6B6276A92D361F4100843C9E /* AuthFeature.swift in Sources */,
+				6B6220B62D38DFB900C5F2C8 /* MemberFeature.swift in Sources */,
 				6B6275F52D35EFE200843C9E /* UIDevice+Extension.swift in Sources */,
 				6B6275F62D35EFE200843C9E /* UserDefaults+Extension.swift in Sources */,
 				6B62208D2D3882C000C5F2C8 /* ScrapScreen+Identifiable.swift in Sources */,
+				6B6220B82D38E28E00C5F2C8 /* URL+Extension.swift in Sources */,
 				6B62208E2D3882C000C5F2C8 /* ScrapCoordinator.swift in Sources */,
 				6B62208F2D3882C000C5F2C8 /* ScrapScreen.swift in Sources */,
 				6B6220862D37B0C400C5F2C8 /* Font.swift in Sources */,
@@ -897,6 +947,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Whidy-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Whidy;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -939,6 +990,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Whidy-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Whidy;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;

@@ -70,9 +70,16 @@ struct OnboardingCoordinator {
             case let .deepLink(.handler(path)):
                 switch path {
                 case .home:
-                    Logger.debug("Home으로 이동, parameter : \(path.parameter)")
+                    Logger.debug("Home으로 이동, parameter : \(String(describing: path.parameter))")
                 case .signup:
-                    Logger.debug("signup으로 이동,  parameter : \(path.parameter)")
+                    Logger.debug("signup으로 이동,  parameter : \(String(describing: path.parameter))")
+                    let signUpCd : String? = path.parameter?["signUpCode"]
+                    
+                    return .routeWithDelaysIfUnsupported(state.routes, action: \.router) {
+                        $0.dismissAll()
+                        $0.push(.member(.init(signUpCd: signUpCd.unwrap())))
+                    }
+                    
                 default:
                     break
                 }

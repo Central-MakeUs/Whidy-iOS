@@ -14,7 +14,7 @@ struct MemberView: View {
     var body: some View {
         WithPerceptionTracking {
             VStack {
-                Text("StudyMapView")
+                Text("Member View")
             }
         }
     }

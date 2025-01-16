@@ -13,7 +13,9 @@ struct MemberFeature {
     @ObservableState
     struct State : Equatable {
         let id = UUID()
-
+        var signUpCd : String = .init()
+        var nickname : String = .init()
+        var email : String = .init()
     }
     
     enum Action : BindableAction {
