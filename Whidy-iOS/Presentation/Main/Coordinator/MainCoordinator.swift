@@ -15,12 +15,14 @@ struct MainCoordinator {
     struct State : Equatable {
         static let initialState = State(
             studyMap: .initialState,
+            scrap: .initialState,
+            myPage: .initialState,
             selectedTab: .studyMap
         )
         
         var studyMap : StudyMapCoordinator.State
-//        var scrapBook : ScrapBookCoordinator.State
-//        var myPage : MyPageCoordinator.State
+        var scrap : ScrapCoordinator.State
+        var myPage : MyPageCoordinator.State
         var selectedTab : Tab
     }
     
@@ -28,7 +30,8 @@ struct MainCoordinator {
         case binding(BindingAction<State>)
         case tabSelected(Tab)
         case studyMap(StudyMapCoordinator.Action)
-        
+        case scrap(ScrapCoordinator.Action)
+        case myPage(MyPageCoordinator.Action)
         case networkResponse(NetworkReponse)
         case viewTransition(ViewTransition)
         case anyAction(AnyAction)
@@ -36,7 +39,7 @@ struct MainCoordinator {
     
     enum Tab : Hashable {
         case studyMap
-        case scrapBook
+        case scrap
         case myPage
     }
     
@@ -61,7 +64,15 @@ struct MainCoordinator {
             StudyMapCoordinator()
         }
         
-//        tabSelectedReducer()
+        Scope(state: \.scrap, action: \.scrap) {
+            ScrapCoordinator()
+        }
+        
+        Scope(state: \.myPage, action: \.myPage) {
+            MyPageCoordinator()
+        }
+        
+        tabSelectedReducer()
 //        viewTransitionReducer()
 //        childActionReducer()
 //        networkResponseReducer()

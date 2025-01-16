@@ -22,6 +22,22 @@ struct MainCoordinatorView: View {
                                 .tabItemFont()
                         }
                         .tag(MainCoordinator.Tab.studyMap)
+                    
+                    ScrapCoordinatorView(store: store.scope(state: \.scrap, action: \.scrap))
+                        .tabItem {
+//                            Image(store.selectedTab == .home ? .homeTabActive : .homeTabInActive)
+                            Text("스크랩")
+                                .tabItemFont()
+                        }
+                        .tag(MainCoordinator.Tab.scrap)
+                    
+                    MyPageCoordinatorView(store: store.scope(state: \.myPage, action: \.myPage))
+                        .tabItem {
+//                            Image(store.selectedTab == .home ? .homeTabActive : .homeTabInActive)
+                            Text("마이")
+                                .tabItemFont()
+                        }
+                        .tag(MainCoordinator.Tab.myPage)
                 }
                 .zIndex(0)
             }
