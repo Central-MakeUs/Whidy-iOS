@@ -13,7 +13,28 @@ struct AuthView: View {
     
     var body: some View {
         WithPerceptionTracking {
-            Text("로그인 View")
+            VStack {
+                
+                Spacer()
+                
+                VStack(spacing:8) {
+                    Image(.kakaoLogin)
+                        .resizable()
+                        .frame(maxWidth: 347, maxHeight: 54)
+                        .asButton {
+                            
+                        }
+                    
+                    Image(.appleLogin)
+                        .resizable()
+                        .frame(maxWidth: 347, maxHeight: 54)
+                        .asButton {
+                            
+                        }
+
+                }
+                .padding(.bottom, 70)
+            }
         }
     }
 }
