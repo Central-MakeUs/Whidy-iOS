@@ -9,10 +9,14 @@ import Foundation
 import SwiftUI
 
 extension View {
+    func align(_ alignment: Alignment) -> some View {
+        modifier(AlignmentModifier(alignment: alignment))
+    }
+    
     func asButton(action: @escaping () -> Void ) -> some View {
         modifier(ButtonWrapper(action: action))
     }
-        
+    
     // Output용
     func normalTextFieldModifier(height: CGFloat, fontSize:CGFloat = 16, weight:Font.Weight = .regular, fontColor:UInt = ColorSystem.black.rawValue, bgColorHex: UInt = ColorSystem.whitee4ebf1.rawValue, alignment : TextAlignment = .leading) -> some View {
         modifier(NormalTextFieldModifier(height: height, fontSize: fontSize, weight: weight, fontColor: fontColor, bgColorHex: bgColorHex, alignment: alignment))
@@ -29,7 +33,7 @@ extension View {
     func normalTextLabelModifier(width:CGFloat, height:CGFloat, fontSize:CGFloat, bgColor:UInt = ColorSystem.white.rawValue, alignment : Alignment = .trailing) -> some View {
         modifier(NormalTextLabelModifier2(fontSize: fontSize, width: width, height: height, alignment: alignment, bgColor: bgColor))
     }
-
+    
     func shadowModifier(cornerRadius : CGFloat = 15, bgColor : UInt = ColorSystem.whitee4ebf1.rawValue, radius:CGFloat = 2, x:CGFloat = 7, y:CGFloat = 7) -> some View {
         modifier(ShadowModifier(cornerRadius:cornerRadius, bgColor: bgColor, radius: radius, x: x, y: y))
     }
