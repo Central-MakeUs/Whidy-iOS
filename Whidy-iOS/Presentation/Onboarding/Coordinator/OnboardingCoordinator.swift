@@ -19,6 +19,8 @@ struct OnboardingCoordinatorView : View {
             case let .auth(store):
                 AuthView(store: store)
                     .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+            case let .web(store):
+                WebView(store: store)
             }
         }
         .onAppear {
@@ -33,16 +35,23 @@ struct OnboardingCoordinator {
     @ObservableState
     struct State : Equatable {
         static var initialState = State(routes: [.root(.auth(.init()), embedInNavigationView: true)])
-        var routes : [Route<OnbaordingScreen.State>]
+        var routes : IdentifiedArrayOf<Route<OnbaordingScreen.State>>
     }
     
     enum Action {
-        case router(IndexedRouterActionOf<OnbaordingScreen>)
+        case router(IdentifiedRouterActionOf<OnbaordingScreen>)
     }
     
     var body : some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
+                
+            case let .router(.routeAction(id: .auth, action: .auth(.viewTransition(.redirectView(url))))):
+                
+                state.routes.presentSheet(.web(.init(url: url)))
+                
+            case .router(.routeAction(id: .web, action: .web(.kakoLoginCancel))):
+                state.routes.dismiss()
                 
             default:
                 break

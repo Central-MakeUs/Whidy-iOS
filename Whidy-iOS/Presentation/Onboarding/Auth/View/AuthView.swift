@@ -14,7 +14,6 @@ struct AuthView: View {
     var body: some View {
         WithPerceptionTracking {
             VStack {
-                
                 Spacer()
                 
                 VStack(spacing:8) {
@@ -22,18 +21,20 @@ struct AuthView: View {
                         .resizable()
                         .frame(maxWidth: 347, maxHeight: 54)
                         .asButton {
-                            
+                            store.send(.buttonTapped(.kakaoLogin))
                         }
                     
                     Image(.appleLogin)
                         .resizable()
                         .frame(maxWidth: 347, maxHeight: 54)
                         .asButton {
-                            
+                            store.send(.buttonTapped(.appleLogin))
                         }
-
                 }
                 .padding(.bottom, 70)
+            }
+            .onAppear {
+                store.send(.viewTransition(.onAppear))
             }
         }
     }

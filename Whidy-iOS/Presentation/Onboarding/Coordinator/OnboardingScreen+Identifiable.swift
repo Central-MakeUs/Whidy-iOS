@@ -12,11 +12,14 @@ extension OnbaordingScreen.State : Identifiable {
         switch self {
         case .auth:
                 .auth
+        case .web:
+                .web
         }
     }
     
     enum ID : Identifiable {
         case auth
+        case web
         
         var id : ID { self }
     }
