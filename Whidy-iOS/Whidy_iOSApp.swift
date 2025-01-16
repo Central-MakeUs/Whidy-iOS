@@ -10,11 +10,29 @@ import ComposableArchitecture
 
 @main
 struct Whidy_iOSApp: App {
+    @SwiftUI.Environment(\.scenePhase) var scenePhase
+    @State var isSplashView = true
+    
+    init() {
+        Logger.configurations()
+    }
+    
     var body: some Scene {
         WindowGroup {
-            RootCoordinatorView(store: Store(initialState: .initialState, reducer: {
-                RootCoordinator()
-            }))
+            ZStack {
+                if isSplashView {
+                    WhidySplashView()
+                        .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                isSplashView = false
+                            }
+                        }
+                } else {
+                    RootCoordinatorView(store: Store(initialState: .initialState, reducer: {
+                        RootCoordinator()
+                    }))
+                }
+            }
         }
     }
 }

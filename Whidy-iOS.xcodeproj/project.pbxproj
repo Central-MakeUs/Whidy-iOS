@@ -26,6 +26,7 @@
 		6B6220A42D388D8500C5F2C8 /* MyPageScreen+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B62209C2D388D8500C5F2C8 /* MyPageScreen+Identifiable.swift */; };
 		6B6220A52D388D8500C5F2C8 /* MyPageFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6220A02D388D8500C5F2C8 /* MyPageFeature.swift */; };
 		6B6220A62D388D8500C5F2C8 /* MyPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B62209A2D388D8500C5F2C8 /* MyPageCoordinator.swift */; };
+		6B6220AA2D3896E800C5F2C8 /* WhidySplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6220A92D3896E800C5F2C8 /* WhidySplashView.swift */; };
 		6B62759A2D35EC7D00843C9E /* Whidy_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B62756F2D35EC7D00843C9E /* Whidy_iOSApp.swift */; };
 		6B62759B2D35EC7D00843C9E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B62756A2D35EC7D00843C9E /* Preview Assets.xcassets */; };
 		6B62759C2D35EC7D00843C9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B62756C2D35EC7D00843C9E /* Assets.xcassets */; };
@@ -117,6 +118,7 @@
 		6B62209C2D388D8500C5F2C8 /* MyPageScreen+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyPageScreen+Identifiable.swift"; sourceTree = "<group>"; };
 		6B62209E2D388D8500C5F2C8 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		6B6220A02D388D8500C5F2C8 /* MyPageFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageFeature.swift; sourceTree = "<group>"; };
+		6B6220A92D3896E800C5F2C8 /* WhidySplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhidySplashView.swift; sourceTree = "<group>"; };
 		6B62756A2D35EC7D00843C9E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6B62756C2D35EC7D00843C9E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6B62756E2D35EC7D00843C9E /* Whidy_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Whidy_iOS.entitlements; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				6B62756C2D35EC7D00843C9E /* Assets.xcassets */,
 				6B62756E2D35EC7D00843C9E /* Whidy_iOS.entitlements */,
 				6B62756F2D35EC7D00843C9E /* Whidy_iOSApp.swift */,
+				6B6220A92D3896E800C5F2C8 /* WhidySplashView.swift */,
 			);
 			path = "Whidy-iOS";
 			sourceTree = "<group>";
@@ -746,6 +749,7 @@
 				6B6275F22D35EFE200843C9E /* Notification.name+Extension.swift in Sources */,
 				6B6275F32D35EFE200843C9E /* Array+Extension.swift in Sources */,
 				6B6276992D36199700843C9E /* RootCoordinatorView.swift in Sources */,
+				6B6220AA2D3896E800C5F2C8 /* WhidySplashView.swift in Sources */,
 				6B62207C2D37AA9700C5F2C8 /* StudyMapCoordinator.swift in Sources */,
 				6B6275F42D35EFE200843C9E /* String+Extension.swift in Sources */,
 				6B6276A92D361F4100843C9E /* AuthFeature.swift in Sources */,
