@@ -78,40 +78,20 @@ struct WebFeature {
     struct State : Equatable {
         let id = UUID()
         var url: URL?
+        var errorMessage : String?
     }
     
     enum Action {
-        
+        case kakoLoginCancel
     }
 
-}
-
-
-//MARK: - Safari
-struct SafariView: UIViewControllerRepresentable {
-
-    @State var store : StoreOf<SafariFeature>
-
-    func makeUIViewController(context: UIViewControllerRepresentableContext<SafariView>) -> SFSafariViewController {
-        
-        return SFSafariViewController(url: store.url)
+    var body: some ReducerOf<Self> {
+        Reduce { state, action in
+            switch action {
+            case .kakoLoginCancel:
+                Logger.debug("KakaoLogin Cancel")
+            }
+            return .none
+        }
     }
-
-    func updateUIViewController(_ uiViewController: SFSafariViewController, context: UIViewControllerRepresentableContext<SafariView>) {
-
-    }
-}
-
-@Reducer
-struct SafariFeature {
-    @ObservableState
-    struct State : Equatable {
-        let id = UUID()
-        var url = URL(string: "")!
-    }
-    
-    enum Action {
-        
-    }
-    
 }
