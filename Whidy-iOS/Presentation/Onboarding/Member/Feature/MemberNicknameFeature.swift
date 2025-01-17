@@ -58,7 +58,7 @@ extension MemberNicknameFeature {
         Reduce { state, action in
             switch action {           
             case .binding(\.nickname):
-                Logger.debug(state.nickname)
+                state.isValid = isValidNickname(state.nickname)
                 
             default:
                 break
@@ -86,25 +86,10 @@ extension MemberNicknameFeature {
         }
     }
     
-    func isValidNickname(_ nickname: String) -> Bool {
-        // 조건 1: 닉네임은 2~12자의 길이
-        guard nickname.count >= 2 && nickname.count <= 12 else {
-            return false
-        }
-        
-        // 조건 2: 닉네임은 알파벳, 숫자, 한글만 포함
-        let regex = "^[a-zA-Z0-9가-힣]+$"
+    private func isValidNickname(_ input: String) -> Bool {
+        guard input.count <= 5 else { return false }
+        let regex = "^[a-zA-Z가-힣ㄱ-ㅎㅏ-ㅣ]+$"
         let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
-        guard predicate.evaluate(with: nickname) else {
-            return false
-        }
-        
-        // 조건 3: 닉네임이 금지어 목록에 포함되지 않음
-        let forbiddenWords: [String] = ["admin", "root", "운영자"] // 원하는 금지어 추가
-        guard !forbiddenWords.contains(where: { nickname.lowercased().contains($0.lowercased()) }) else {
-            return false
-        }
-        
-        return true
+        return predicate.evaluate(with: input)
     }
 }

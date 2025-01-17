@@ -59,6 +59,7 @@ extension MemberEmailFeature {
             switch action {
             case .binding(\.email):
                 Logger.debug(state.email)
+                state.isValid = isValidEmail(state.email)
                 
             default:
                 break
@@ -81,5 +82,11 @@ extension MemberEmailFeature {
             
             return .none
         }
+    }
+    
+    private func isValidEmail(_ email: String) -> Bool {
+        let regex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        return predicate.evaluate(with: email)
     }
 }

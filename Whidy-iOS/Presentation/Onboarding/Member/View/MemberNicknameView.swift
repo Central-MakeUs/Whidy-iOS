@@ -36,13 +36,13 @@ struct MemberNicknameView: View {
                 Text("다음")
                     .fontModifier(fontSize: 15, weight: .semibold, color: ColorSystem.white.rawValue)
                     .frame(width: 120, height: 45)
-                    .background(Color(hex: 0x437CFD))
+                    .background(store.isValid ? Color(hex: 0x437CFD) : Color(hex: 0xD8D8D8))
                     .cornerRadius(15)
                     .align(.trailing)
                     .asButton {
                         store.send(.buttonTapped(.next))
                     }
-//                    .padding(<#T##EdgeInsets#>)
+                    .disabled(!store.isValid)
             }
             .padding(.horizontal, 29)
             .padding(.vertical, 100)
@@ -51,8 +51,8 @@ struct MemberNicknameView: View {
     }
 }
 
-//#Preview {
-//    MemberNicknameView(store: Store(initialState: MemberNicknameFeature.State(), reducer: {
-//        MemberNicknameFeature()
-//    }))
-//}
+#Preview {
+    MemberNicknameView(store: Store(initialState: MemberNicknameFeature.State(), reducer: {
+        MemberNicknameFeature()
+    }))
+}
