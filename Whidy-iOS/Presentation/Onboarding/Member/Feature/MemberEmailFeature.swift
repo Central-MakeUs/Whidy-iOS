@@ -1,5 +1,5 @@
 //
-//  MemberFeature.swift
+//  MemberEmailFeature.swift
 //  Whidy-iOS
 //
 //  Created by JinwooLee on 1/16/25.
@@ -9,13 +9,12 @@ import Foundation
 import ComposableArchitecture
 
 @Reducer
-struct MemberFeature {
+struct MemberEmailFeature {
     @ObservableState
     struct State : Equatable {
         let id = UUID()
-        var signUpCd : String = .init()
-        var nickname : String = .init()
         var email : String = .init()
+        var isValid : Bool = false
     }
     
     enum Action : BindableAction {
@@ -27,15 +26,16 @@ struct MemberFeature {
     }
     
     enum NetworkReponse {
-        
+        case signUp
     }
     
     enum ButtonTapped {
-        
+        case complete
     }
     
     enum ViewTransition {
         case onAppear
+        case goToBack
     }
 
     enum AnyAction {
@@ -48,15 +48,38 @@ struct MemberFeature {
         
         BindingReducer()
         
+        bindingReducer()
+        buttonTappedReducer()
+    }
+}
+
+extension MemberEmailFeature {
+    func bindingReducer() -> some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-            
+            case .binding(\.email):
+                Logger.debug(state.email)
                 
-            default :
+            default:
                 break
             }
+            
+            return .none
+        }
+    }
+    
+    func buttonTappedReducer() -> some ReducerOf<Self> {
+        Reduce { state, action in
+            switch action {
+                
+            case .buttonTapped(.complete):
+                Logger.debug("완료버튼 탭")
+                
+            default:
+                break
+            }
+            
             return .none
         }
     }
 }
-

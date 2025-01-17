@@ -1,5 +1,5 @@
 //
-//  MemberView.swift
+//  MemberEmailView.swift
 //  Whidy-iOS
 //
 //  Created by JinwooLee on 1/16/25.
@@ -8,8 +8,8 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct MemberView: View {
-    @Perception.Bindable var store: StoreOf<MemberFeature>
+struct MemberEmailView: View {
+    @Perception.Bindable var store: StoreOf<MemberEmailFeature>
     
     var body: some View {
         WithPerceptionTracking {
@@ -22,15 +22,7 @@ struct MemberView: View {
                     .fontModifier(fontSize: 64, weight: .bold, color: ColorSystem.black.rawValue)
                     .align(.leading)
                     .padding(.top, 35)
-                
-                Text("닉네임을 입력해주세요")
-                    .fontModifier(fontSize: 20, weight: .bold, color: ColorSystem.black.rawValue)
-                    .align(.leading)
-                    .padding(.top, 50)
-                    
-                TextField("", text: $store.nickname)
-                    .textFieldStyle(CommonTextfieldStyle(radius: 10, height: 59, border: 1))
-                
+                                
                 Text("이메일을 입력해주세요")
                     .fontModifier(fontSize: 20, weight: .bold, color: ColorSystem.black.rawValue)
                     .align(.leading)
@@ -48,17 +40,26 @@ struct MemberView: View {
                     .cornerRadius(15)
                     .align(.trailing)
                     .asButton {
-                        
+                        store.send(.buttonTapped(.complete))
                     }
+//                    .padding(<#T##EdgeInsets#>)
             }
             .padding(.horizontal, 29)
             .padding(.vertical, 100)
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    BackButton {
+                        store.send(.viewTransition(.goToBack))
+                    }
+                }
+            }
         }
     }
 }
 
 #Preview {
-    MemberView(store: Store(initialState: MemberFeature.State(signUpCd: "zxcasdzxc"), reducer: {
-        MemberFeature()
+    MemberEmailView(store: Store(initialState: MemberEmailFeature.State(), reducer: {
+        MemberEmailFeature()
     }))
 }
