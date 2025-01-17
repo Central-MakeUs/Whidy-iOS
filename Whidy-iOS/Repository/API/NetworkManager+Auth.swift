@@ -13,6 +13,20 @@ extension NetworkManager {
         return AuthRouter.redirect(authType).fullUrl!
     }
     
+    func signUp(request : SignUpRequest) async -> Result<SignIn, APIError> {
+            do {
+                let response = try await requestAPI(router: AuthRouter.signUp(request: request), of: SignInResponse.self)
+                return .success(response.toDomain())
+            } catch {
+                if let apiError = error as? APIError {
+                    return .failure(apiError)
+                } else {
+                    return .failure(APIError.unknown)
+                }
+            }
+        }
+    }
+    
 //    func appVersion() async -> Result<AppVersionInfo, APIError> {
 //        do {
 //            let response = try await requestAPI(router: CommonRouter.appVersion, of: RemoteResponse<AppVersionResponse>.self)
@@ -54,4 +68,4 @@ extension NetworkManager {
 //            }
 //        }
 //    }
-}
+//}

@@ -28,7 +28,7 @@ final class NetworkManager : Sendable {
         
         return try await withCheckedThrowingContinuation { continuation in
             session.request(urlRequest)
-                .validate(statusCode: RemoteConstants.httpStatusValidRange)
+//                .validate(statusCode: RemoteConstants.httpStatusValidRange)
                 .responseDecodable(of: type, emptyResponseCodes: [200]) { response in
                     switch response.result {
                     case let .success(res):
@@ -39,9 +39,9 @@ final class NetworkManager : Sendable {
                         
                     //FIXME: - Error Handligng 필요
                     case let .failure(error):
+                        Logger.error("\(error) ->> \(response)")
                         if let errorData = response.data {
                             self.useResponseLog(data: response.data!, error: true)
-                            Logger.error(error)
                             do {
                                 let networkError = try JSONDecoder().decode(ErrorResponse.self, from: errorData)
                                 let apiError = APIError(error: networkError)
@@ -75,9 +75,9 @@ final class NetworkManager : Sendable {
                         
                     //FIXME: - Error Handligng 필요
                     case let .failure(error):
+                        Logger.error(error)
                         if let errorData = response.data {
                             self.useResponseLog(data: response.data!, error: true)
-                            Logger.error(error)
                             do {
                                 let networkError = try JSONDecoder().decode(ErrorResponse.self, from: errorData)
                                 let apiError = APIError(error: networkError)

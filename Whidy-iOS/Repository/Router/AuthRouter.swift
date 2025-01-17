@@ -12,7 +12,7 @@ enum AuthRouter {
     case redirect(OAuthType)
     case callbackGet(oAuthType:OAuthType, code : String)
     case callbackPost(oAuthType:OAuthType, code : String)
-    case signUp
+    case signUp(request : SignUpRequest)
     case signOut
     case refresh
 }
@@ -71,6 +71,10 @@ extension AuthRouter : TargetType {
 
     var body: Data? {
         switch self {
+        case let .signUp(request):
+            let encoder = JSONEncoder()
+            return try? encoder.encode(request)
+
         default:
             return nil
         }
