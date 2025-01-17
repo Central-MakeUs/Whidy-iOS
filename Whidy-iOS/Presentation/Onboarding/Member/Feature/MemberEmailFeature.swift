@@ -36,6 +36,7 @@ struct MemberEmailFeature {
     enum ViewTransition {
         case onAppear
         case goToBack
+        case goToHome(String)
     }
 
     enum AnyAction {
@@ -58,7 +59,6 @@ extension MemberEmailFeature {
         Reduce { state, action in
             switch action {
             case .binding(\.email):
-                Logger.debug(state.email)
                 state.isValid = isValidEmail(state.email)
                 
             default:
@@ -74,7 +74,9 @@ extension MemberEmailFeature {
             switch action {
                 
             case .buttonTapped(.complete):
-                Logger.debug("완료버튼 탭")
+                return .run { [email = state.email] send in
+                    await send(.viewTransition(.goToHome(email)))
+                }
                 
             default:
                 break

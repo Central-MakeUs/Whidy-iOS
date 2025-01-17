@@ -48,17 +48,29 @@ struct OnboardingCoordinator {
     struct State : Equatable {
         static var initialState = State(routes: [.root(.auth(.init()), embedInNavigationView: true)])
         var routes : IdentifiedArrayOf<Route<OnbaordingScreen.State>>
+        
+        //TODO: - Struct 변환
+        var nickname : String = .init()
+        var email : String = .init()
         var signUpCd : String?
+        ///
     }
     
     enum Action {
         case router(IdentifiedRouterActionOf<OnbaordingScreen>)
         case deepLink(DeepLink)
+        case networkResponse(NetworkReponse)
     }
     
     enum DeepLink {
         case handler(DeepLinkPath)
     }
+    
+    enum NetworkReponse {
+        case signUp(Result<SignIn, APIError>)
+    }
+    
+    @Dependency(\.networkManager) var networkManager
     
     var body : some ReducerOf<Self> {
         Reduce { state, action in
@@ -75,8 +87,31 @@ struct OnboardingCoordinator {
                 state.routes.goBack()
                 
             /// Onboarding Member 정보 입력
-            case .router(.routeAction(id: .memberNickname, action: .memberNickname(.viewTransition(.goToEmail)))):
+            case let .router(.routeAction(id: .memberNickname, action: .memberNickname(.viewTransition(.goToEmail(nickname))))):
+                state.nickname = nickname
                 state.routes.push(.memberEmail(.init()))
+                
+            /// 회원가입
+            case let .router(.routeAction(id: .memberEmail, action: .memberEmail(.viewTransition(.goToHome(email))))):
+                state.email = email
+                
+                guard let signUpCd = state.signUpCd else { return .none }
+                let signUpRequest = SignUpRequest(signUpCode: signUpCd, email: state.email, name: state.nickname)
+                
+                return .run { send in
+                    await send(.networkResponse(.signUp(
+                        networkManager.signUp(request: signUpRequest)
+                    )))
+                }
+                
+                //TODO: - 가입 성공시 화면전환 로직, 로그인 성공시 화면전환 로직
+                
+            case let .networkResponse(.signUp(.success(signIn))):
+                Logger.debug("SignUp Success - \(signIn) 🐼🐼🐼🐼🐼🐼🐼🐼🐼🐼🐼")
+                
+            case let .networkResponse(.signUp(.failure(error))):
+                let errorType = APIError.networkErrorType(error: error)
+                Logger.error("\(error) ->>🤔 \(errorType)")
                 
             case let .deepLink(.handler(path)):
                 switch path {

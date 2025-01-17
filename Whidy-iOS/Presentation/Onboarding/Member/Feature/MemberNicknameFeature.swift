@@ -35,7 +35,7 @@ struct MemberNicknameFeature {
     
     enum ViewTransition {
         case onAppear
-        case goToEmail
+        case goToEmail(String)
     }
 
     enum AnyAction {
@@ -74,8 +74,8 @@ extension MemberNicknameFeature {
                 
             case .buttonTapped(.next):
                 Logger.debug("다음버튼 탭")
-                return .run { send in
-                    await send(.viewTransition(.goToEmail))
+                return .run { [nickname = state.nickname] send in
+                    await send(.viewTransition(.goToEmail(nickname)))
                 }
                 
             default:
