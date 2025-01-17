@@ -19,12 +19,15 @@ struct OnboardingCoordinatorView : View {
             case let .auth(store):
                 AuthView(store: store)
                     .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
-            case let .member(store):
-                MemberView(store: store)
+            case let .memberNickname(store):
+                MemberNicknameView(store: store)
+            case let .memberEmail(store):
+                MemberEmailView(store: store)
             case let .web(store):
                 WebView(store: store)
             }
         }
+        .accentColor(Color(hex: ColorSystem.black.rawValue))
         .onAppear {
 //            store.send(.onAppear)
         }
@@ -45,6 +48,7 @@ struct OnboardingCoordinator {
     struct State : Equatable {
         static var initialState = State(routes: [.root(.auth(.init()), embedInNavigationView: true)])
         var routes : IdentifiedArrayOf<Route<OnbaordingScreen.State>>
+        var signUpCd : String?
     }
     
     enum Action {
@@ -67,17 +71,24 @@ struct OnboardingCoordinator {
             case .router(.routeAction(id: .web, action: .web(.dismiss))):
                 state.routes.dismiss()
                 
+            case .router(.routeAction(id: .memberEmail, action: .memberEmail(.viewTransition(.goToBack)))):
+                state.routes.goBack()
+                
+            /// Onboarding Member 정보 입력
+            case .router(.routeAction(id: .memberNickname, action: .memberNickname(.viewTransition(.goToEmail)))):
+                state.routes.push(.memberEmail(.init()))
+                
             case let .deepLink(.handler(path)):
                 switch path {
                 case .home:
                     Logger.debug("Home으로 이동, parameter : \(String(describing: path.parameter))")
                 case .signup:
                     Logger.debug("signup으로 이동,  parameter : \(String(describing: path.parameter))")
-                    let signUpCd : String? = path.parameter?["signUpCode"]
+                    state.signUpCd = path.parameter?["signUpCode"]
                     
                     return .routeWithDelaysIfUnsupported(state.routes, action: \.router) {
                         $0.dismissAll()
-                        $0.push(.member(.init(signUpCd: signUpCd.unwrap())))
+                        $0.push(.memberNickname(.init()))
                     }
                     
                 default:
