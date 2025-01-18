@@ -49,6 +49,8 @@ struct OnboardingCoordinator {
         static var initialState = State(routes: [.root(.auth(.init()), embedInNavigationView: true)])
         var routes : IdentifiedArrayOf<Route<OnbaordingScreen.State>>
         
+        @Shared(Environment.SharedInMemoryType.memberSession.keys) var memberSession : MemberSession = .init()
+        
         //TODO: - Struct 변환
         var nickname : String = .init()
         var email : String = .init()
@@ -104,10 +106,15 @@ struct OnboardingCoordinator {
                     )))
                 }
                 
-                //TODO: - 가입 성공시 화면전환 로직, 로그인 성공시 화면전환 로직
-                
+            //TODO: - 가입 성공시 화면전환 로직, 로그인 성공시 화면전환 로직
             case let .networkResponse(.signUp(.success(signIn))):
                 Logger.debug("SignUp Success - \(signIn) 🐼🐼🐼🐼🐼🐼🐼🐼🐼🐼🐼")
+                state.$memberSession.withLock {
+                    $0.setLoggedIn(true)
+                    $0.setAccessToken(signIn.authToken.accessToken)
+                    $0.setRefreshToken(signIn.authToken.refreshToken)
+                    $0.setUserId(signIn.userId)
+                }
                 
             case let .networkResponse(.signUp(.failure(error))):
                 let errorType = APIError.networkErrorType(error: error)
@@ -117,6 +124,12 @@ struct OnboardingCoordinator {
                 switch path {
                 case .home:
                     Logger.debug("Home으로 이동, parameter : \(String(describing: path.parameter))")
+                    state.$memberSession.withLock {
+                        $0.setLoggedIn(true)
+                        $0.setAccessToken(path.parameter?["accessToken"] ?? "")
+                        $0.setRefreshToken(path.parameter?["refreshToken"] ?? "")
+                    }
+                    
                 case .signup:
                     Logger.debug("signup으로 이동,  parameter : \(String(describing: path.parameter))")
                     state.signUpCd = path.parameter?["signUpCode"]
