@@ -62,6 +62,7 @@ struct OnboardingCoordinator {
         case router(IdentifiedRouterActionOf<OnbaordingScreen>)
         case deepLink(DeepLink)
         case networkResponse(NetworkReponse)
+        case anyAction(AnyAction)
     }
     
     enum DeepLink {
@@ -70,6 +71,10 @@ struct OnboardingCoordinator {
     
     enum NetworkReponse {
         case signUp(Result<SignIn, APIError>)
+    }
+    
+    enum AnyAction {
+        case login(AuthToken)
     }
     
     @Dependency(\.networkManager) var networkManager
@@ -106,6 +111,15 @@ struct OnboardingCoordinator {
                     )))
                 }
                 
+            // 로그인
+            case let .anyAction(.login(authToken)):
+                Logger.debug("authToken - \(authToken)")
+                state.$memberSession.withLock {
+                    $0.setLoggedIn(true)
+                    $0.setAccessToken(authToken.accessToken)
+                    $0.setRefreshToken(authToken.refreshToken)
+                }
+                
             //TODO: - 가입 성공시 화면전환 로직, 로그인 성공시 화면전환 로직
             case let .networkResponse(.signUp(.success(signIn))):
                 Logger.debug("SignUp Success - \(signIn) 🐼🐼🐼🐼🐼🐼🐼🐼🐼🐼🐼")
@@ -124,10 +138,15 @@ struct OnboardingCoordinator {
                 switch path {
                 case .home:
                     Logger.debug("Home으로 이동, parameter : \(String(describing: path.parameter))")
-                    state.$memberSession.withLock {
-                        $0.setLoggedIn(true)
-                        $0.setAccessToken(path.parameter?["accessToken"] ?? "")
-                        $0.setRefreshToken(path.parameter?["refreshToken"] ?? "")
+                                        
+                    guard let authToken = path.parameter, let accessToken = authToken["accessToken"], let refreshToken = authToken["refreshToken"] else { return .none }
+                    
+                    state.routes.dismissAll()
+                    
+                    return .run { send in
+                        //TODO: - LoadingView 필요함
+                        try await Task.sleep(for: .seconds(0.5))
+                        await send(.anyAction(.login(AuthToken(accessToken: accessToken, refreshToken: refreshToken))))
                     }
                     
                 case .signup:
