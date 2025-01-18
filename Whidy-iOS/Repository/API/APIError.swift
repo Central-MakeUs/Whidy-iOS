@@ -8,18 +8,18 @@
 import Foundation
 
 enum APIError : Error, Equatable, LocalizedError {
-    case network(errorCode: String, message: String)
+    case network(errorCode: Int, message: String)
     case decodingError
     case unknown
     
-    var errorDescription: String {
+    var errorDescription: Int {
         switch self {
         case let .network(errorCode, _):
             return errorCode
         case .decodingError:
-            return "디코딩 에러"
+            return 0
         case .unknown:
-            return "내부 서버 오류"
+            return -1
         }
     }
     
@@ -33,10 +33,13 @@ enum APIError : Error, Equatable, LocalizedError {
     }
         
     enum ErrorType {
+        case signUpDuplicate(message:String)
         case unknown
         
         var errorMessage: String {
             switch self {
+            case let .signUpDuplicate(message):
+                return message
             default:
                 return ""
             }
@@ -49,7 +52,8 @@ enum APIError : Error, Equatable, LocalizedError {
     
     static func networkErrorType(error : APIError) -> ErrorType {
         switch error.errorDescription {
-
+        case 409:
+            return .signUpDuplicate(message: error.errorMessage)
         default:
             return .unknown
         }

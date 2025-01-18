@@ -28,7 +28,6 @@ final class NetworkManager : Sendable {
         
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(urlRequest)
-//                .validate(statusCode: RemoteConstants.httpStatusValidRange)
                 .responseDecodable(of: type, emptyResponseCodes: [200]) { response in
                     switch response.result {
                     case let .success(res):
@@ -39,7 +38,6 @@ final class NetworkManager : Sendable {
                         
                     //FIXME: - Error Handligng 필요
                     case let .failure(error):
-                        Logger.error("\(error) ->> \(response)")
                         if let errorData = response.data {
                             self.useResponseLog(data: response.data!, error: true)
                             do {
@@ -47,7 +45,6 @@ final class NetworkManager : Sendable {
                                 let apiError = APIError(error: networkError)
                                 continuation.resume(throwing: apiError)
                             } catch {
-                                // decoding Error
                                 continuation.resume(throwing: APIError.decodingError)
                             }
                         } else {
