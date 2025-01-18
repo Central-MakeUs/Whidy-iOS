@@ -14,7 +14,7 @@ struct RootCoordinatorView: View {
     var body: some View {
         WithPerceptionTracking {
             ZStack {
-                if store.isLoggined {
+                if store.memberSession.isLoggedIn {
                     MainCoordinatorView(store: store.scope(state: \.main, action: \.main))
                         .transition(.opacity.animation(.easeIn))
                         .zIndex(1)

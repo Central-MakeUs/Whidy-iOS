@@ -16,7 +16,7 @@ struct RootCoordinator {
             onboarding: .initialState, main: .initialState)
         var onboarding : OnboardingCoordinator.State
         var main : MainCoordinator.State
-        var isLoggined : Bool = true
+        @Shared(Environment.SharedInMemoryType.memberSession.keys) var memberSession : MemberSession = .init()
     }
     
     enum Action : BindableAction {
