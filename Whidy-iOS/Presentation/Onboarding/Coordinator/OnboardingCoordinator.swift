@@ -14,28 +14,37 @@ struct OnboardingCoordinatorView : View {
     @Perception.Bindable var store : StoreOf<OnboardingCoordinator>
     
     var body: some View {
-        TCARouter(store.scope(state: \.routes, action: \.router)) { screen in
-            switch screen.case {
-            case let .auth(store):
-                AuthView(store: store)
-                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
-            case let .memberNickname(store):
-                MemberNicknameView(store: store)
-            case let .memberEmail(store):
-                MemberEmailView(store: store)
-            case let .web(store):
-                WebView(store: store)
+        WithPerceptionTracking {
+            TCARouter(store.scope(state: \.routes, action: \.router)) { screen in
+                switch screen.case {
+                case let .auth(store):
+                    AuthView(store: store)
+                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                case let .memberNickname(store):
+                    MemberNicknameView(store: store)
+                case let .memberEmail(store):
+                    MemberEmailView(store: store)
+                case let .web(store):
+                    WebView(store: store)
+                }
             }
-        }
-        .accentColor(Color(hex: ColorSystem.black.rawValue))
-        .onAppear {
-//            store.send(.onAppear)
-        }
-        .onOpenURL { url in
-            Logger.debug("Redirect Url : \(url), isDeepLink : \(url.isDeepLink), url.deeplinkComponent : \(String(describing: url.queryParameters)), host : \(url.pageIdentifier) 🐼🐼🐼🐼🐼🐼🐼🐼🐼")
-            
-            if url.isDeepLink {
-                store.send(.deepLink(.handler(url.pageIdentifier)))
+            .accentColor(Color(hex: ColorSystem.black.rawValue))
+            .alert(isPresented: $store.isSignUpError) {
+                Alert(title: Text("알림"), message: Text(store.errorMessage),
+                      dismissButton: .default(Text("확인")))
+            }
+            .onAppear {
+                store.send(.viewTransition(.onAppear))
+            }
+            .onDisappear {
+                store.send(.viewTransition(.onDisappear))
+            }
+            .onOpenURL { url in
+                Logger.debug("Redirect Url : \(url), isDeepLink : \(url.isDeepLink), url.deeplinkComponent : \(String(describing: url.queryParameters)), host : \(url.pageIdentifier) 🐼🐼🐼🐼🐼🐼🐼🐼🐼")
+                
+                if url.isDeepLink {
+                    store.send(.deepLink(.handler(url.pageIdentifier)))
+                }
             }
         }
     }
@@ -56,13 +65,23 @@ struct OnboardingCoordinator {
         var email : String = .init()
         var signUpCd : String?
         ///
+        
+        var isSignUpError : Bool = false
+        var errorMessage : String = .init()
     }
     
-    enum Action {
+    enum Action : BindableAction {
         case router(IdentifiedRouterActionOf<OnbaordingScreen>)
+        case binding(BindingAction<State>)
+        case viewTransition(ViewTransition)
         case deepLink(DeepLink)
         case networkResponse(NetworkReponse)
         case anyAction(AnyAction)
+    }
+    
+    enum ViewTransition {
+        case onAppear
+        case onDisappear
     }
     
     enum DeepLink {
@@ -80,6 +99,9 @@ struct OnboardingCoordinator {
     @Dependency(\.networkManager) var networkManager
     
     var body : some ReducerOf<Self> {
+        
+        BindingReducer()
+        
         Reduce { state, action in
             switch action {
                 
@@ -133,6 +155,14 @@ struct OnboardingCoordinator {
             case let .networkResponse(.signUp(.failure(error))):
                 let errorType = APIError.networkErrorType(error: error)
                 Logger.error("\(error) ->>🤔 \(errorType)")
+                
+                switch errorType {
+                case .signUpDuplicate:
+                    state.errorMessage = errorType.errorMessage
+                    state.isSignUpError = true
+                default:
+                    return .none
+                }
                 
             case let .deepLink(.handler(path)):
                 switch path {
