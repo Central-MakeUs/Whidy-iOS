@@ -41,6 +41,7 @@
 		6B6220CC2D39F5AF00C5F2C8 /* SignInResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6220CB2D39F5AF00C5F2C8 /* SignInResponse.swift */; };
 		6B6220CF2D39F73E00C5F2C8 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6220CE2D39F73E00C5F2C8 /* SignIn.swift */; };
 		6B6221852D3B720E00C5F2C8 /* MemberSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6221842D3B720E00C5F2C8 /* MemberSession.swift */; };
+		6B6221882D3B967900C5F2C8 /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = 6B6221872D3B967900C5F2C8 /* NMapsMap */; };
 		6B62759A2D35EC7D00843C9E /* Whidy_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B62756F2D35EC7D00843C9E /* Whidy_iOSApp.swift */; };
 		6B62759B2D35EC7D00843C9E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B62756A2D35EC7D00843C9E /* Preview Assets.xcassets */; };
 		6B62759C2D35EC7D00843C9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B62756C2D35EC7D00843C9E /* Assets.xcassets */; };
@@ -216,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B6923DC2D2C25A00086E4D3 /* KakaoSDKCommon in Frameworks */,
+				6B6221882D3B967900C5F2C8 /* NMapsMap in Frameworks */,
 				6B6923D12D2C25680086E4D3 /* Kingfisher in Frameworks */,
 				6B6923D42D2C25A00086E4D3 /* KakaoSDK in Frameworks */,
 				6B6276812D35FA8E00843C9E /* SwiftyUserDefaults in Frameworks */,
@@ -721,6 +723,7 @@
 				6B6923DD2D2C25A00086E4D3 /* KakaoSDKUser */,
 				6B6276802D35FA8E00843C9E /* SwiftyUserDefaults */,
 				6B6276832D35FAD700843C9E /* SwiftyBeaver */,
+				6B6221872D3B967900C5F2C8 /* NMapsMap */,
 			);
 			productName = "Whidy-iOS";
 			productReference = 6B65F9A92D291B06000164A4 /* Whidy-iOS.app */;
@@ -758,6 +761,7 @@
 				6B6923D22D2C25A00086E4D3 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				6B62767F2D35FA8E00843C9E /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */,
 				6B6276822D35FAD700843C9E /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
+				6B6221862D3B967900C5F2C8 /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6B65F9AA2D291B06000164A4 /* Products */;
@@ -1108,6 +1112,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6B6221862D3B967900C5F2C8 /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/navermaps/SPM-NMapsMap";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.20.0;
+			};
+		};
 		6B62767F2D35FA8E00843C9E /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sunshinejr/SwiftyUserDefaults.git";
@@ -1167,6 +1179,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6B6221872D3B967900C5F2C8 /* NMapsMap */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B6221862D3B967900C5F2C8 /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */;
+			productName = NMapsMap;
+		};
 		6B6276802D35FA8E00843C9E /* SwiftyUserDefaults */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6B62767F2D35FA8E00843C9E /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */;
