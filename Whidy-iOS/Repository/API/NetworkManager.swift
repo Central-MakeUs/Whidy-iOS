@@ -14,7 +14,7 @@ final class NetworkManager : Sendable {
     static let shared = NetworkManager()
     
     private let session: Session = {
-        let manager = ServerTrustManager(evaluators: ["" : DisabledTrustEvaluator()])
+        let manager = ServerTrustManager(evaluators: ["*" : DisabledTrustEvaluator()])
         let configuration = URLSessionConfiguration.af.default
         return Session(configuration: configuration, serverTrustManager: manager)
     }()
@@ -27,7 +27,7 @@ final class NetworkManager : Sendable {
         useRequestLog(urlRequest)
         
         return try await withCheckedThrowingContinuation { continuation in
-            session.request(urlRequest)
+            AF.request(urlRequest)
 //                .validate(statusCode: RemoteConstants.httpStatusValidRange)
                 .responseDecodable(of: type, emptyResponseCodes: [200]) { response in
                     switch response.result {
@@ -65,7 +65,7 @@ final class NetworkManager : Sendable {
         useRequestLog(urlRequest)
         
         return try await withCheckedThrowingContinuation { continuation in
-            session.upload(multipartFormData: multipart, to: urlRequest.url!, method: urlRequest.method!, headers: urlRequest.headers)
+            AF.upload(multipartFormData: multipart, to: urlRequest.url!, method: urlRequest.method!, headers: urlRequest.headers)
                 .validate(statusCode: RemoteConstants.httpStatusValidRange)
                 .responseDecodable(of: type, emptyResponseCodes: [200]) { response in
                     switch response.result {
