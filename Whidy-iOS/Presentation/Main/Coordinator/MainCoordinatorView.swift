@@ -38,6 +38,10 @@ struct MainCoordinatorView: View {
                 }
                 .zIndex(0)
             }
+            .onAppear {
+                Logger.debug("MainCoordinator OnAppear")
+                NaverMapManager.shared.checkIfLocationServiceIsEnabled()
+            }
         }
     }
 }

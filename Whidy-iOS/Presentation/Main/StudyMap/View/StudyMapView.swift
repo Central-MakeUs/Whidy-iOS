@@ -14,8 +14,10 @@ struct StudyMapView: View {
     var body: some View {
         WithPerceptionTracking {
             VStack {
-                Text("StudyMapView")
+                MapView()
+                    .ignoresSafeArea(.all)
             }
         }
     }
 }
+

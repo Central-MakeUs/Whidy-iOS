@@ -4,6 +4,7 @@
 ### User
 **/NativeAppKey.swift
 **/RemoteConstants.swift
+**/Config.swift
 
 ### CocoaPods ###
 ## CocoaPods GitIgnore Template
