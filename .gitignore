@@ -5,6 +5,7 @@
 **/NativeAppKey.swift
 **/RemoteConstants.swift
 **/Config.swift
+**/*.xcconfig
 
 ### CocoaPods ###
 ## CocoaPods GitIgnore Template
