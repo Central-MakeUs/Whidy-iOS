@@ -19,6 +19,6 @@ struct ShadowModifier : ViewModifier {
         content
             .background(Color(hex: bgColor))
             .cornerRadius(cornerRadius)
-            .shadow(color: Color(hex: ColorSystem.gray6e7f8d.rawValue).opacity(0.3), radius: radius, x: x, y: y)
+            .shadow(color: Color(hex: ColorSystem.tabbarUnactive.rawValue).opacity(0.3), radius: radius, x: x, y: y)
     }
 }

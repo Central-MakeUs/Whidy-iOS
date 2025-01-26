@@ -15,6 +15,11 @@ struct Whidy_iOSApp: App {
     
     init() {
         Logger.configurations()
+        
+        /// Tabbar Configuration
+        UITabBar.appearance().backgroundColor = UIColor.white
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)], for: .selected)
     }
     
     var body: some Scene {

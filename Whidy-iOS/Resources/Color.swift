@@ -11,54 +11,8 @@ enum ColorSystem: UInt {
     case black = 0xFF000000
     case white = 0xFFFFFFFF
     
-    case black000000 = 0x000000
-    case black222222 = 0x222222
-    case black333333 = 0x333333
-    case black384255 = 0x384255
-    
-    case gray97999e = 0x97999e
-    case graycccccc = 0xcccccc
-    case graye3e5ec = 0xE3E5EC
-    case grayd8d8d8 = 0xD8D8D8
-    case gray999999 = 0x999999
-    case gray555555 = 0x555555
-    case graye8e8e8 = 0xE8E8E8
-    case gray1e2834 = 0x1E2834
-    case gray6e7f8d = 0x6E7F8D // textUnPointColor
-    
-    case whiteffffff = 0xFFFFFF
-    case whitebcc1c6 = 0xBCC1C6
-    case white46ffffff = 0x46FFFFFF
-    case whiteeff2f5 = 0xEFF2F5
-    case whitee4ebf1 = 0xE4EBF1 //textInputBackground
-    case whiteeeeeee = 0xEEEEEE
-    
-    case redff7f00 = 0xFF7F00
-    case redff0000 = 0xFF0000
-    case rede31c25 = 0xE31C25
-    
-    case orangefa0 = 0xFA0
-    case orangee58903 = 0xE58903
-    
-    case yellowfee500 = 0xFEE500
-    case yellowffbd03 = 0xFFBD03
-    case yellowe7d532 = 0xE7D532
-    case yellowe4d232 = 0xE4D232
-    case yellowffa200 = 0xFFA200
-    
-    case green4ac687 = 0x4AC687
-    case green7abd87 = 0x7ABD87
-    case green668d4e = 0x668D4E
-    case green5ea504 = 0x5EA504 // pointColor
-    case green04be74 = 0x04BE74
-    case green00c73c = 0x00C73C
-    case green00a461 = 0x00A461
-    
-    case blue4e93f3 = 0x4E93F3
-    case blue0a1624 = 0x0A1624
-    case blue049cbe = 0x049CBE
-    case blue073b4c = 0x073B4C
-    case blue16B2B6 = 0x16B2B6
+    case tabbarActive = 0x373737
+    case tabbarUnactive = 0x8A8A8A
     
     var uIntToString: String {
         return String(format: "%06X", self.rawValue)

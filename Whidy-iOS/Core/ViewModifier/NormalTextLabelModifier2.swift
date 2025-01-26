@@ -16,7 +16,7 @@ struct NormalTextLabelModifier2: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .foregroundStyle(Color(hex: ColorSystem.gray6e7f8d.rawValue))
+            .foregroundStyle(Color(hex: ColorSystem.tabbarUnactive.rawValue))
             .font(.system(size: fontSize, weight: .bold))
             .background(Color(hex: bgColor))
             .frame(width: width, height: height, alignment: alignment)

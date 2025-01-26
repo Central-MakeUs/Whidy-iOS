@@ -17,17 +17,15 @@ struct MainCoordinatorView: View {
                 TabView(selection: $store.selectedTab.sending(\.tabSelected)) {
                     StudyMapCoordinatorView(store: store.scope(state: \.studyMap, action: \.studyMap))
                         .tabItem {
-//                            Image(store.selectedTab == .home ? .homeTabActive : .homeTabInActive)
+                            Image(store.selectedTab == .studyMap ? .tabMapActive : .tabMapInActive)
                             Text("지도")
-                                .tabItemFont()
                         }
                         .tag(MainCoordinator.Tab.studyMap)
                     
                     ScrapCoordinatorView(store: store.scope(state: \.scrap, action: \.scrap))
                         .tabItem {
-//                            Image(store.selectedTab == .home ? .homeTabActive : .homeTabInActive)
+                            Image(store.selectedTab == .scrap ? .scrapActive : .scrapInActive)
                             Text("스크랩")
-                                .tabItemFont()
                         }
                         .tag(MainCoordinator.Tab.scrap)
                     
@@ -35,7 +33,6 @@ struct MainCoordinatorView: View {
                         .tabItem {
 //                            Image(store.selectedTab == .home ? .homeTabActive : .homeTabInActive)
                             Text("마이")
-                                .tabItemFont()
                         }
                         .tag(MainCoordinator.Tab.myPage)
                 }

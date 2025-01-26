@@ -14,12 +14,12 @@ struct NormalTextLabelModifier : ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .fontModifier(fontSize: fontSize, weight: .semibold, color: ColorSystem.gray6e7f8d.rawValue)
+            .fontModifier(fontSize: fontSize, weight: .semibold, color: ColorSystem.tabbarUnactive.rawValue)
             .padding()
             .frame(maxWidth: .infinity, maxHeight: height)
             .background {
                 RoundedRectangle(cornerRadius: 4)
-                    .foregroundColor(Color(hex: ColorSystem.whitee4ebf1.rawValue))
+                    .foregroundColor(Color(hex: ColorSystem.tabbarUnactive.rawValue))
                     .frame(maxWidth: .infinity, maxHeight: height)
             }
     }
