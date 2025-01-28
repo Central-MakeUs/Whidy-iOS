@@ -19,14 +19,13 @@ struct NormalTextFieldModifier: ViewModifier {
         content
             .fontModifier(fontSize: fontSize, weight: weight, color: fontColor)
             .multilineTextAlignment(alignment)
-            .padding()
             .textInputAutocapitalization(.never)
             .autocorrectionDisabled(true)
-            .frame(maxWidth: .infinity, maxHeight: height)
+            .frame(maxWidth: .infinity, minHeight: height)
             .background {
                 RoundedRectangle(cornerRadius: 4)
                     .foregroundColor(Color(hex: bgColorHex))
-                    .frame(maxWidth: .infinity, maxHeight: height)
+                    .frame(maxWidth: .infinity, minHeight: height)
             }
     }
 }
