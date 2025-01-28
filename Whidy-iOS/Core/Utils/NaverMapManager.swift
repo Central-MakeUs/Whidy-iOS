@@ -21,16 +21,10 @@ final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelega
         
         Logger.debug("NaverMapManager Init")
         
-        
         view.mapView.positionMode = .direction
         view.mapView.isNightModeEnabled = true
-        
-        view.mapView.zoomLevel = 15
-        view.mapView.minZoomLevel = 10 // 최소 줌 레벨
-        view.mapView.maxZoomLevel = 17 // 최대 줌 레벨
-        
         view.showLocationButton = true
-        view.showZoomControls = true // 줌 확대, 축소 버튼 활성화
+        view.showZoomControls = false // 줌 확대, 축소 버튼 활성화
         view.showCompass = false
         view.showScaleBar = false
         
@@ -84,21 +78,11 @@ final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelega
     private func fetchUserLocation() {
         if let locationManager = locationManager {
             Logger.debug("fetchUserLocation Success ✅")
-            
             let lat = locationManager.location?.coordinate.latitude
             let lng = locationManager.location?.coordinate.longitude
             let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: lat ?? 0.0, lng: lng ?? 0.0), zoomTo: 15)
             cameraUpdate.animation = .easeIn
-            cameraUpdate.animationDuration = 2
-            
-            let locationOverlay = view.mapView.locationOverlay
-            locationOverlay.location = NMGLatLng(lat: lat ?? 0.0, lng: lng ?? 0.0)
-            locationOverlay.hidden = false
-            
-            locationOverlay.icon = NMFOverlayImage(name: "location_overlay_icon")
-            locationOverlay.iconWidth = CGFloat(NMF_LOCATION_OVERLAY_SIZE_AUTO)
-            locationOverlay.iconHeight = CGFloat(NMF_LOCATION_OVERLAY_SIZE_AUTO)
-            locationOverlay.anchor = CGPoint(x: 0.5, y: 1)
+            cameraUpdate.animationDuration = 0.5
             
             view.mapView.moveCamera(cameraUpdate)
         } else {
@@ -108,9 +92,11 @@ final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelega
     
     func mapView(_ mapView: NMFMapView, cameraWillChangeByReason reason: Int, animated: Bool) {
         // 카메라 이동이 시작되기 전 호출되는 함수
+        Logger.debug("cameraWillChangeByReason")
     }
     
     func mapView(_ mapView: NMFMapView, cameraIsChangingByReason reason: Int) {
         // 카메라의 위치가 변경되면 호출되는 함수
+        Logger.debug("cameraIsChangingByReason")
     }
 }
