@@ -13,6 +13,7 @@ enum ColorSystem: UInt {
     
     case grayG300 = 0xBBC0C9
     case grayG100 = 0xF3F5F6
+    case grayG800 = 0x333A44
     
     case tabbarActive = 0x373737
     case tabbarUnactive = 0x8A8A8A
