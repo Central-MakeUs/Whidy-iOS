@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import RealmSwift
 import ComposableArchitecture
 
 struct SearchView: View {
     @Perception.Bindable var store: StoreOf<SearchFeature>
+    @ObservedResults(LatestSearch.self, sortDescriptor: SortDescriptor(keyPath: "regDt", ascending: false)) var latestSearch
     
     var body: some View {
 
