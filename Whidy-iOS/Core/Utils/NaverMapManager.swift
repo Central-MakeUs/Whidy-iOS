@@ -10,7 +10,7 @@ import NMapsMap
 
 final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelegate, NMFMapViewTouchDelegate, CLLocationManagerDelegate {
     static let shared = NaverMapManager()
-    var locationManager: CLLocationManager?
+    private let locationManager = LocationManager.shared.getManager()
     
     let view = NMFNaverMapView(frame: .zero)
     @Published var coord: (Double, Double) = (0.0, 0.0)
@@ -38,8 +38,6 @@ final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelega
     
     // MARK: - 위치 정보 동의 확인
     func checkLocationAuthorization() {
-        guard let locationManager = locationManager else { Logger.error("LocationManager Nil");return }
-        
         switch locationManager.authorizationStatus {
         case .notDetermined:
             Logger.debug("notDetermined")
@@ -65,8 +63,6 @@ final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelega
         DispatchQueue.global().async {
             if CLLocationManager.locationServicesEnabled() {
                 DispatchQueue.main.async {
-                    self.locationManager = CLLocationManager()
-                    self.locationManager!.delegate = self
                     self.checkLocationAuthorization()
                 }
             } else {
@@ -76,11 +72,9 @@ final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelega
     }
     
     private func fetchUserLocation() {
-        if let locationManager = locationManager {
+        if let lat = locationManager.location?.coordinate.latitude, let lng = locationManager.location?.coordinate.longitude {
             Logger.debug("fetchUserLocation Success ✅")
-            let lat = locationManager.location?.coordinate.latitude
-            let lng = locationManager.location?.coordinate.longitude
-            let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: lat ?? 0.0, lng: lng ?? 0.0), zoomTo: 15)
+            let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: lat, lng: lng), zoomTo: 15)
             cameraUpdate.animation = .easeIn
             cameraUpdate.animationDuration = 0.5
             

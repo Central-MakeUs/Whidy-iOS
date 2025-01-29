@@ -121,6 +121,7 @@
 		6BF2D86D2D4A414C00252A43 /* LatestSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2D86C2D4A414C00252A43 /* LatestSearch.swift */; };
 		6BF2D8782D4A471000252A43 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6BF2D8772D4A471000252A43 /* RealmSwift */; };
 		6BF2D8792D4A492900252A43 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 6BF2D8772D4A471000252A43 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		6BF2D87C2D4A568E00252A43 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2D87B2D4A568E00252A43 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -241,6 +242,7 @@
 		6BF2D8632D49ED3D00252A43 /* SearchFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFeature.swift; sourceTree = "<group>"; };
 		6BF2D8652D49EEA800252A43 /* StudyMapFeature+Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyMapFeature+Enum.swift"; sourceTree = "<group>"; };
 		6BF2D86C2D4A414C00252A43 /* LatestSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestSearch.swift; sourceTree = "<group>"; };
+		6BF2D87B2D4A568E00252A43 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -556,6 +558,7 @@
 				6B62762F2D35EFFB00843C9E /* NetworkMonitor.swift */,
 				6B6276302D35EFFB00843C9E /* AppStoreCheckManager.swift */,
 				6BF2D8532D46037500252A43 /* NaverMapManager.swift */,
+				6BF2D87B2D4A568E00252A43 /* LocationManager.swift */,
 				6B6275E12D35EFE200843C9E /* Enviroment.swift */,
 				6B6275E22D35EFE200843C9E /* Logger.swift */,
 				6B6275E32D35EFE200843C9E /* LoginType.swift */,
@@ -947,6 +950,7 @@
 				6B6275F22D35EFE200843C9E /* Notification.name+Extension.swift in Sources */,
 				6B6275F32D35EFE200843C9E /* Array+Extension.swift in Sources */,
 				6B6276992D36199700843C9E /* RootCoordinatorView.swift in Sources */,
+				6BF2D87C2D4A568E00252A43 /* LocationManager.swift in Sources */,
 				6B6220AA2D3896E800C5F2C8 /* WhidySplashView.swift in Sources */,
 				6B62207C2D37AA9700C5F2C8 /* StudyMapCoordinator.swift in Sources */,
 				6B6275F42D35EFE200843C9E /* String+Extension.swift in Sources */,
