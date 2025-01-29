@@ -38,7 +38,7 @@ extension TargetType {
     func adpat() -> [String:String] {
         if Defaults.accessToken.isNotEmpty {
             var header = setDefaultHTTPHeaderField()
-            header[HTTPHeader.authorization.rawValue] = "Bearer=" + Defaults.accessToken
+            header[HTTPHeader.authorization.rawValue] = "Bearer " + Defaults.accessToken
             
             return header
         } else {

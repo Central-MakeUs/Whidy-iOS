@@ -7,15 +7,13 @@
 
 import Foundation
 import Alamofire
-import ComposableArchitecture
+import SwiftyUserDefaults
 
 final class AuthInterceptor : RequestAdapter, RequestRetrier, RequestInterceptor {
-    @Shared(Environment.SharedInMemoryType.memberSession.keys) var memberSession : MemberSession = .init()
-    
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         var request = urlRequest
-        if !memberSession.accessToken.isEmpty {
-            request.setValue("Bearer " + memberSession.accessToken, forHTTPHeaderField: "Authorization")
+        if !Defaults.accessToken.isEmpty {
+            request.setValue("Bearer " + Defaults.accessToken, forHTTPHeaderField: "Authorization")
         }
         
         completion(.success(request))
@@ -32,10 +30,8 @@ final class AuthInterceptor : RequestAdapter, RequestRetrier, RequestInterceptor
             Logger.debug("AuthToken Refresh Success ✅✅✅")
             switch response {
             case let .success(token):
-                $memberSession.withLock {
-                    $0.setAccessToken(token.accessToken)
-                    $0.setRefreshToken(token.refreshToken)
-                }
+                Defaults.accessToken = token.accessToken
+                Defaults.refreshToken = token.refreshToken
             case let .failure(error):
                 completion(.doNotRetryWithError(error))
             }

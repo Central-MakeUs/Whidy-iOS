@@ -123,6 +123,7 @@
 		6BF2D8792D4A492900252A43 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 6BF2D8772D4A471000252A43 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		6BF2D87C2D4A568E00252A43 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2D87B2D4A568E00252A43 /* LocationManager.swift */; };
 		6BF2D87E2D4A66A300252A43 /* AuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2D87D2D4A66A300252A43 /* AuthInterceptor.swift */; };
+		6BF2D8802D4A6FD700252A43 /* OnboardingCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2D87F2D4A6FD700252A43 /* OnboardingCoordinatorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -245,6 +246,7 @@
 		6BF2D86C2D4A414C00252A43 /* LatestSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestSearch.swift; sourceTree = "<group>"; };
 		6BF2D87B2D4A568E00252A43 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		6BF2D87D2D4A66A300252A43 /* AuthInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterceptor.swift; sourceTree = "<group>"; };
+		6BF2D87F2D4A6FD700252A43 /* OnboardingCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -662,6 +664,7 @@
 		6B62769C2D361B1D00843C9E /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
+				6BF2D87F2D4A6FD700252A43 /* OnboardingCoordinatorView.swift */,
 				6B62769E2D361C2100843C9E /* OnboardingCoordinator.swift */,
 				6B6276A02D361CE300843C9E /* OnboardingScreen.swift */,
 				6B6276A22D361D1400843C9E /* OnboardingScreen+Identifiable.swift */,
@@ -886,6 +889,7 @@
 				6B6275EA2D35EFE200843C9E /* View+Extension.swift in Sources */,
 				6B6276502D35F01A00843C9E /* HTTPHeader.swift in Sources */,
 				6BF2D85C2D49ECED00252A43 /* StudyMapView+ChildView.swift in Sources */,
+				6BF2D8802D4A6FD700252A43 /* OnboardingCoordinatorView.swift in Sources */,
 				6B6220BE2D39E92900C5F2C8 /* MemberEmailView.swift in Sources */,
 				6B6276512D35F01A00843C9E /* TargetType.swift in Sources */,
 				6B6220C02D39E92B00C5F2C8 /* MemberEmailFeature.swift in Sources */,
