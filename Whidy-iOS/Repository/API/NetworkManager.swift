@@ -27,7 +27,7 @@ final class NetworkManager : Sendable {
         useRequestLog(urlRequest)
         
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request(urlRequest)
+            AF.request(urlRequest, interceptor: AuthInterceptor())
                 .responseDecodable(of: type, emptyResponseCodes: [200]) { response in
                     switch response.result {
                     case let .success(res):
