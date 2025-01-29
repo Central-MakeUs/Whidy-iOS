@@ -22,7 +22,7 @@ struct Whidy_iOSApp: App {
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor(hexCode: ColorSystem.brwonPB800.uIntToString)], for: .selected)
         
         /// Texfield
-        UITextField.appearance().clearButtonMode = .whileEditing
+        UITextField.appearance().clearButtonMode = .whileEditing /// clear button
     }
     
     var body: some Scene {

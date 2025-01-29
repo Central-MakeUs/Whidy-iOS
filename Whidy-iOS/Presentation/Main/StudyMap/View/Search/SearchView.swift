@@ -31,6 +31,9 @@ struct SearchView: View {
                 }
                 .padding(.horizontal, 14)
                 .padding(.top, 30)
+                .onAppear {
+                    UIApplication.shared.addTapGestureRecognizer() /// keyboard hide
+                }
                 .toolbar(.hidden, for: .tabBar)
                 .navigationBarBackButtonHidden(true)
                 .toolbar {
