@@ -20,6 +20,9 @@ struct Whidy_iOSApp: App {
         UITabBar.appearance().backgroundColor = UIColor.white
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor: UIColor.gray], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor(hexCode: ColorSystem.brwonPB800.uIntToString)], for: .selected)
+        
+        /// Texfield
+        UITextField.appearance().clearButtonMode = .whileEditing
     }
     
     var body: some Scene {

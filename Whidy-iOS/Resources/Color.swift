@@ -11,9 +11,11 @@ enum ColorSystem: UInt {
     case black = 0xFF000000
     case white = 0xFFFFFFFF
     
-    case grayG300 = 0xBBC0C9
     case grayG100 = 0xF3F5F6
+    case grayG300 = 0xBBC0C9
+    case grayG500 = 0x757E8C
     case grayG800 = 0x333A44
+    case grayG900 = 0x111111
     
     case brwonPB800 = 0x3A290C
     

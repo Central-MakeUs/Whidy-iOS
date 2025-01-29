@@ -13,7 +13,7 @@ struct SearchFeature {
     @ObservableState
     struct State : Equatable {
         let id = UUID()
-
+        var userInput : String = .init()
     }
     
     enum Action : BindableAction {
@@ -26,6 +26,7 @@ struct SearchFeature {
     
     enum ViewTransition {
         case onAppear
+        case goToBack
     }
     
     enum NetworkReponse {

@@ -12,7 +12,7 @@ struct BackButton: View {
     
     var body: some View {
         Button(action: action) {
-            Image(systemName: "chevron.left") // 화살표 Image
+            Image(.back) // 화살표 Image
                 .aspectRatio(contentMode: .fit)
         }
     }

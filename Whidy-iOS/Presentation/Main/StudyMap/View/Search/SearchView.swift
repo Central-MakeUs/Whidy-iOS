@@ -12,13 +12,45 @@ struct SearchView: View {
     @Perception.Bindable var store: StoreOf<SearchFeature>
     
     var body: some View {
-        WithPerceptionTracking {
-            NavigationStack {
+
+        GeometryReader { geometry in
+            WithPerceptionTracking {
                 VStack {
-                    Text("SearchView")
+                    HStack {
+                        Text("최근 검색")
+                            .fontModifier(fontSize: 14, weight: .semibold, color: ColorSystem.grayG800.rawValue)
+                        
+                        Spacer()
+                        
+                        Text("전체 삭제")
+                            .fontModifier(fontSize: 12, weight: .regular, color: ColorSystem.grayG500.rawValue)
+                            .asButton {
+                                Logger.debug("전체 삭제")
+                            }
+                    }
                 }
-                .onAppear {
-                    
+                .padding(.horizontal, 14)
+                .padding(.top, 30)
+                .toolbar(.hidden, for: .tabBar)
+                .navigationBarBackButtonHidden(true)
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        HStack(spacing:0) {
+                            BackButton {
+                                store.send(.viewTransition(.goToBack))
+                            }
+                            
+                            TextField("원하는 공간을 검색해보세요", text: $store.userInput)
+                                .fontModifier(fontSize: 16, weight: .semibold, color: ColorSystem.grayG900.rawValue)
+                                .frame(width: geometry.size.width - 85, height: 38)
+                                .padding(.horizontal, 16)
+                                .cornerRadius(8)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(Color(hex: ColorSystem.grayG100.rawValue), lineWidth: 1) // 테두리 색상과 두께
+                                )
+                        }
+                    }
                 }
             }
         }
