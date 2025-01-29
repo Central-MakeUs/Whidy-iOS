@@ -15,53 +15,15 @@ struct StudyMapView: View {
     var body: some View {
         WithPerceptionTracking {
             ZStack(alignment:.top) {
-                VStack {
-                    HStack(spacing:0){
-                        searchBar
-                            .onTapGesture {
-                                Logger.debug("SearchBar Tab ---> to SearchView")
-                            }
-                        
-                        Spacer()
-                        
-                        Image(.btnFilter)
-                            .resizable()
-                            .frame(width: 38, height: 38)
-                            .asButton {
-                                Logger.debug("Filter Btn")
-                            }
-                            .padding(.leading, 6)
-                    }
-                    .padding(.horizontal, 14)
-                    
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 8) { // 요소 간 간격 설정
-                            ForEach(store.filterCase) { item in
-                                Text(item.caseTitle)
-                                    .fontModifier(fontSize: 14, weight: .semibold, color: ColorSystem.grayG800.rawValue)
-                                    .padding(.horizontal, 12)
-                                    .frame(height: 34, alignment: .center)
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 17)
-                                            .fill(Color(hex: ColorSystem.grayG100.rawValue))
-                                    )
-                            }
-                        }
-                        .padding(.horizontal, 14)
-                        .padding(.bottom, 6)
-                    }
-                    .frame(height: 35)
-                }
-                .background(
-                    Rectangle()
-                        .fill(Color(hex: ColorSystem.white.rawValue))
-                )
-                .zIndex(1)
+                filterBtn
+                    .zIndex(1)
+                
+                placeAddBtn
+                    .zIndex(1) // 버튼이 항상 위에 보이도록 설정
                 
                 MapView()
                     .ignoresSafeArea(edges: [.horizontal, .bottom])
                     .zIndex(0)
-                
             }
         }
     }
@@ -92,5 +54,74 @@ extension StudyMapView {
             )
             .frame(maxWidth: .infinity)
             .disabled(true)
+    }
+    
+    var filterBar : some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 8) { // 요소 간 간격 설정
+                ForEach(store.filterCase) { item in
+                    Text(item.caseTitle)
+                        .fontModifier(fontSize: 14, weight: .semibold, color: ColorSystem.grayG800.rawValue)
+                        .padding(.horizontal, 12)
+                        .frame(height: 34, alignment: .center)
+                        .background(
+                            RoundedRectangle(cornerRadius: 17)
+                                .fill(Color(hex: ColorSystem.grayG100.rawValue))
+                        )
+                }
+            }
+            .padding(.horizontal, 14)
+            .padding(.bottom, 6)
+        }
+    }
+    
+    var filterBtn : some View {
+        VStack {
+            HStack(spacing:0){
+                searchBar
+                    .onTapGesture {
+                        Logger.debug("SearchBar Tab ---> to SearchView")
+                    }
+                
+                Spacer()
+                
+                Image(.btnFilter)
+                    .resizable()
+                    .frame(width: 38, height: 38)
+                    .asButton {
+                        Logger.debug("Filter Btn")
+                    }
+                    .padding(.leading, 6)
+            }
+            .padding(.horizontal, 14)
+            
+            filterBar
+                .frame(height: 35)
+        }
+        .background(
+            Rectangle()
+                .fill(Color(hex: ColorSystem.white.rawValue))
+        )
+    }
+    
+    var placeAddBtn : some View {
+        VStack {
+            Spacer() // 상단 공간 채우기
+            HStack {
+                Spacer() // 왼쪽 공간 채우기
+                Text("+ 장소 추가")
+                    .fontModifier(fontSize: 14, weight: .semibold, color: ColorSystem.white.rawValue)
+                    .frame(width: 101, height: 48, alignment: .center)
+                    .background(
+                        RoundedRectangle(cornerRadius: 40)
+                            .fill(Color(hex: ColorSystem.brwonPB800.rawValue))
+                    )
+                    .padding(.trailing, 14) // 오른쪽 여백
+                    .padding(.bottom, 18)  // 아래 여백
+                    .onTapGesture {
+                        Logger.debug("장소추가 버튼")
+                    }
+            }
+        }
     }
 }
