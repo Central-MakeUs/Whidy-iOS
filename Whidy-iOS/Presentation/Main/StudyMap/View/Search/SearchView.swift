@@ -27,14 +27,30 @@ struct SearchView: View {
                         Text("전체 삭제")
                             .fontModifier(fontSize: 12, weight: .regular, color: ColorSystem.grayG500.rawValue)
                             .asButton {
-                                Logger.debug("전체 삭제")
+                                store.send(.buttonTapped(.removeLatestSearch))
                             }
-                    }
+                    }.opacity(store.isHideLatestSearch ? 0 : 1)
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 8) { // 요소 간 간격 설정
+                            ForEach(latestSearch) { item in
+                                Text(item.keyword)
+                                    .fontModifier(fontSize: 12, weight: .semibold, color: ColorSystem.grayG500.rawValue)
+                                    .padding(.horizontal, 18)
+                                    .frame(height: 39, alignment: .center)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 24)
+                                            .stroke(Color(hex: ColorSystem.grayG100.rawValue), lineWidth: 1)
+                                    )
+                            }
+                        }
+                    }.opacity(store.isHideLatestSearch ? 0 : 1)
                 }
                 .padding(.horizontal, 14)
                 .padding(.top, 30)
                 .onAppear {
                     UIApplication.shared.addTapGestureRecognizer() /// keyboard hide
+                    Logger.debug(Realm.Configuration.defaultConfiguration.fileURL ?? "")
                 }
                 .toolbar(.hidden, for: .tabBar)
                 .navigationBarBackButtonHidden(true)
