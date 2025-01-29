@@ -1,33 +1,11 @@
 //
-//  StudyMapView.swift
+//  StudyMapView+ChildView.swift
 //  Whidy-iOS
 //
-//  Created by JinwooLee on 1/15/25.
+//  Created by JinwooLee on 1/29/25.
 //
 
 import SwiftUI
-import ComposableArchitecture
-
-struct StudyMapView: View {
-    @Perception.Bindable var store: StoreOf<StudyMapFeature>
-    @State var text = ""
-    
-    var body: some View {
-        WithPerceptionTracking {
-            ZStack(alignment:.top) {
-                filterBtn
-                    .zIndex(1)
-                
-                placeAddBtn
-                    .zIndex(1) // 버튼이 항상 위에 보이도록 설정
-                
-                MapView()
-                    .ignoresSafeArea(edges: [.horizontal, .bottom])
-                    .zIndex(0)
-            }
-        }
-    }
-}
 
 extension StudyMapView {
     var searchBar : some View {
@@ -54,6 +32,9 @@ extension StudyMapView {
             )
             .frame(maxWidth: .infinity)
             .disabled(true)
+            .onTapGesture {
+                store.send(.buttonTapped(.search))
+            }
     }
     
     var filterBar : some View {
@@ -125,3 +106,4 @@ extension StudyMapView {
         }
     }
 }
+

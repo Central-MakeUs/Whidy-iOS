@@ -17,6 +17,8 @@ struct StudyMapCoordinatorView : View {
             switch screen.case {
             case let .studyMap(store):
                 StudyMapView(store: store)
+            case let .search(store):
+                SearchView(store: store)
             }
         }
     }
@@ -37,6 +39,9 @@ struct StudyMapCoordinator {
     var body: some ReducerOf<Self> {
         Reduce<State, Action> { state, action in
             switch action {
+                
+            case .router(.routeAction(id: .studyMap, action: .studyMap(.viewTransition(.goToSearch)))):
+                state.routes.push(.search(.init()))
                 
             default :
                 break

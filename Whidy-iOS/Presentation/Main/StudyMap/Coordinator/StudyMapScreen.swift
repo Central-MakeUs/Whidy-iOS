@@ -11,4 +11,5 @@ import ComposableArchitecture
 @Reducer(state: .equatable)
 enum StudyMapScreen {
     case studyMap(StudyMapFeature)
+    case search(SearchFeature)
 }
