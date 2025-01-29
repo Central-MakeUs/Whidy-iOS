@@ -10,7 +10,7 @@ import NMapsMap
 
 final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelegate, NMFMapViewTouchDelegate, CLLocationManagerDelegate {
     static let shared = NaverMapManager()
-    private let locationManager = LocationManager.shared.getManager()
+    private let locationManager = LocationManager.shared
     
     let view = NMFNaverMapView(frame: .zero)
     @Published var coord: (Double, Double) = (0.0, 0.0)
@@ -38,10 +38,10 @@ final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelega
     
     // MARK: - 위치 정보 동의 확인
     func checkLocationAuthorization() {
-        switch locationManager.authorizationStatus {
+        switch locationManager.getManager().authorizationStatus {
         case .notDetermined:
             Logger.debug("notDetermined")
-            locationManager.requestWhenInUseAuthorization()
+            locationManager.getManager().requestWhenInUseAuthorization()
         case .restricted:
             Logger.debug("위치 정보 접근이 제한되었습니다.")
         case .denied:
@@ -49,8 +49,8 @@ final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelega
         case .authorizedAlways, .authorizedWhenInUse:
             Logger.debug("Success")
             
-            coord = (Double(locationManager.location?.coordinate.latitude ?? 0.0), Double(locationManager.location?.coordinate.longitude ?? 0.0))
-            userLocation = (Double(locationManager.location?.coordinate.latitude ?? 0.0), Double(locationManager.location?.coordinate.longitude ?? 0.0))
+            coord = (locationManager.getCoordinates().latitude ?? 0.0, locationManager.getCoordinates().longitude ?? 0.0)
+            userLocation = (locationManager.getCoordinates().latitude ?? 0.0, locationManager.getCoordinates().longitude ?? 0.0)
             
             fetchUserLocation()
             
@@ -72,7 +72,7 @@ final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelega
     }
     
     private func fetchUserLocation() {
-        if let lat = locationManager.location?.coordinate.latitude, let lng = locationManager.location?.coordinate.longitude {
+        if let lat = locationManager.getCoordinates().latitude, let lng = locationManager.getCoordinates().longitude {
             Logger.debug("fetchUserLocation Success ✅")
             let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: lat, lng: lng), zoomTo: 15)
             cameraUpdate.animation = .easeIn
