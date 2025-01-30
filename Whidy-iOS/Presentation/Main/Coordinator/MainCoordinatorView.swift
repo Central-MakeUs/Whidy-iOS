@@ -24,14 +24,14 @@ struct MainCoordinatorView: View {
                     
                     ScrapCoordinatorView(store: store.scope(state: \.scrap, action: \.scrap))
                         .tabItem {
-                            Image(store.selectedTab == .scrap ? .scrapActive : .scrapInActive)
+                            Image(store.selectedTab == .scrap ? .tabScrapActive : .tabScrapInActive)
                             Text("스크랩")
                         }
                         .tag(MainCoordinator.Tab.scrap)
                     
                     MyPageCoordinatorView(store: store.scope(state: \.myPage, action: \.myPage))
                         .tabItem {
-//                            Image(store.selectedTab == .home ? .homeTabActive : .homeTabInActive)
+                            Image(store.selectedTab == .myPage ? .tabMyActive : .tabMyInActive)
                             Text("마이")
                         }
                         .tag(MainCoordinator.Tab.myPage)

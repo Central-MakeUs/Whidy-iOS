@@ -97,17 +97,16 @@ struct OnboardingCoordinator {
                 Logger.debug("authToken - \(authToken)")
                 state.$memberSession.withLock {
                     $0.setLoggedIn(true)
-                    $0.setAccessToken(authToken.accessToken)
-                    $0.setRefreshToken(authToken.refreshToken)
                 }
+                
+                Defaults.accessToken = authToken.accessToken
+                Defaults.refreshToken = authToken.refreshToken
                 
             //TODO: - 가입 성공시 화면전환 로직, 로그인 성공시 화면전환 로직
             case let .networkResponse(.signUp(.success(signIn))):
                 Logger.debug("SignUp Success - \(signIn) 🐼🐼🐼🐼🐼🐼🐼🐼🐼🐼🐼")
                 state.$memberSession.withLock {
                     $0.setLoggedIn(true)
-                    $0.setAccessToken(signIn.authToken.accessToken)
-                    $0.setRefreshToken(signIn.authToken.refreshToken)
                     $0.setUserId(signIn.userId)
                 }
                 
