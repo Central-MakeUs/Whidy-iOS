@@ -21,7 +21,7 @@ struct StudyMapFeature {
         case viewTransition(ViewTransition)
         case networkResponse(NetworkReponse)
         case buttonTapped(ButtonTapped)
-        case anyAction(AnyAction)
+        case mapProvider(MapProvider)
     }
     
     enum ViewTransition {
@@ -36,22 +36,42 @@ struct StudyMapFeature {
     enum ButtonTapped {
         case search
     }
-
-    enum AnyAction {
-
-    }
     
+    enum MapProvider {
+        case registerPublisher
+        case onMoveToSpecificLocation(SearchMockData)
+    }
+
     @Dependency(\.networkManager) var networkManager
+    @Dependency(\.naverMapManager) var naverMapManager
     
     var body : some ReducerOf<Self> {
         
         BindingReducer()
         
+        viewtransitionReducer()
         buttonTappedReducer()
+        mapProviderReducer()
     }
 }
 
 extension StudyMapFeature {
+    func viewtransitionReducer() -> some ReducerOf<Self> {
+        Reduce { state, action in
+            switch action {
+            case .viewTransition(.onAppear):
+                return .run { send in
+                    await send(.mapProvider(.registerPublisher))
+                }
+                
+            default:
+                break
+            }
+            
+            return .none
+        }
+    }
+    
     func buttonTappedReducer() -> some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
@@ -65,5 +85,37 @@ extension StudyMapFeature {
             
             return .none
         }
+    }
+    
+    func mapProviderReducer() -> some ReducerOf<Self> {
+        Reduce { state, action in
+            switch action {
+            case .mapProvider(.registerPublisher):
+                return .merge(registerPublisher())
+                
+            case let .mapProvider(.onMoveToSpecificLocation(location)):
+                Logger.debug("studyMapFeature onMoveToSpecificLocation \(location) ✅✅✅✅")
+                
+            default:
+                break
+            }
+            
+            return .none
+        }
+    }
+    
+    private func registerPublisher() -> [Effect<StudyMapFeature.Action>] {
+        var effects : [Effect<StudyMapFeature.Action>] = .init()
+        
+        effects.append(Effect<StudyMapFeature.Action>
+            .publisher {
+                naverMapManager.onMoveToSpecificLocation
+                    .map { location in
+                        Action.mapProvider(.onMoveToSpecificLocation(location))
+                    }
+            }
+        )
+        
+        return effects
     }
 }

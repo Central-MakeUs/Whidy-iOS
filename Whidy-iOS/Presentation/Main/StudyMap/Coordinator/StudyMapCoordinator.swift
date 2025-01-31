@@ -52,7 +52,6 @@ struct StudyMapCoordinator {
                 
                 return .routeWithDelaysIfUnsupported(state.routes, action: \.router) {
                     $0.goBack()
-                    
                     naverMapManager.moveToSpecificLocation(location: location)
                 }
             default :

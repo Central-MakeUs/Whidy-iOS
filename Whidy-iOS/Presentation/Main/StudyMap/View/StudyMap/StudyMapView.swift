@@ -25,6 +25,9 @@ struct StudyMapView: View {
                     .ignoresSafeArea(edges: [.horizontal, .bottom])
                     .zIndex(0)
             }
+            .onAppear {
+                store.send(.viewTransition(.onAppear))
+            }
         }
     }
 }
