@@ -90,12 +90,12 @@ extension SearchView {
                             .align(.leading)
                     }
                     .onTapGesture {
-                        Logger.debug(item)
+                        store.send(.viewTransition(.goToResultLocation(item)))
                     }
-                    .padding(.vertical, 8) // 각 항목의 내부 간격 조절
-                    .background(Color.white) // 배경색 추가 (선택 사항)
-                    .cornerRadius(8) // 모서리 둥글게 (선택 사항)
-                    .shadow(radius: 2) // 그림자 추가 (선택 사항)
+                    .padding(.vertical, 8)
+                    .background(Color.white)
+                    .cornerRadius(8)
+                    .shadow(radius: 2)
                 }
             }
             .padding(.horizontal) // 좌우 패딩 추가

@@ -7,6 +7,8 @@
 
 import Foundation
 import NMapsMap
+import ComposableArchitecture
+import Combine
 
 final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelegate, NMFMapViewTouchDelegate, CLLocationManagerDelegate {
     static let shared = NaverMapManager()
@@ -15,6 +17,9 @@ final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelega
     let view = NMFNaverMapView(frame: .zero)
     @Published var coord: (Double, Double) = (0.0, 0.0)
     @Published var userLocation: (Double, Double) = (0.0, 0.0)
+    
+    /// Feature Send Subject
+    let onMoveToSpecificLocation: PassthroughSubject<SearchMockData, Never> = .init()
     
     override init() {
         super.init()
@@ -84,6 +89,25 @@ final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelega
         }
     }
     
+    func moveToSpecificLocation(location : SearchMockData) {
+        Logger.debug("moveToSpecificLocation lat: \(location.latitude), lng: \(location.longitude) ✅✅✅✅")
+        
+        ///let specificLocation = NMGLatLng(lat: 37.566610, lng: 126.978388)
+        let specificLocation = NMGLatLng(lat: location.latitude, lng: location.longitude)
+        let cameraUpdate = NMFCameraUpdate(position: NMFCameraPosition(specificLocation, zoom: 15))
+
+        view.mapView.moveCamera(cameraUpdate) { [weak self] isCancelled in
+            guard let self else { return }
+            
+            if isCancelled {
+                Logger.error("moveToSpecificLocation fail ❌❌❌❌")
+            } else {
+                Logger.debug("moveToSpecificLocation success ✅✅✅✅")
+                onMoveToSpecificLocation.send(location)
+            }
+        }
+    }
+    
     func mapView(_ mapView: NMFMapView, cameraWillChangeByReason reason: Int, animated: Bool) {
         // 카메라 이동이 시작되기 전 호출되는 함수
         Logger.debug("cameraWillChangeByReason")
@@ -92,5 +116,16 @@ final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelega
     func mapView(_ mapView: NMFMapView, cameraIsChangingByReason reason: Int) {
         // 카메라의 위치가 변경되면 호출되는 함수
         Logger.debug("cameraIsChangingByReason")
+    }
+}
+
+private enum NaverMapManagerKey: DependencyKey {
+    static var liveValue: NaverMapManager = NaverMapManager.shared
+}
+
+extension DependencyValues {
+    var naverMapManager: NaverMapManager {
+        get { self[NaverMapManagerKey.self] }
+        set { self[NaverMapManagerKey.self] = newValue }
     }
 }

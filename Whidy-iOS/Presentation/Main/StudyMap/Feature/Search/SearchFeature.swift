@@ -33,6 +33,7 @@ struct SearchFeature {
     enum ViewTransition {
         case onAppear
         case goToBack
+        case goToResultLocation(SearchMockData)
     }
     
     enum NetworkReponse {
@@ -49,6 +50,7 @@ struct SearchFeature {
     }
     
     @Dependency(\.networkManager) var networkManager
+    @Dependency(\.naverMapManager) var naverMapManager
     
     var body : some ReducerOf<Self> {
         

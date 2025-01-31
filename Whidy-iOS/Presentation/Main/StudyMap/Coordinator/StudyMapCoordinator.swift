@@ -36,6 +36,8 @@ struct StudyMapCoordinator {
         case router(IdentifiedRouterActionOf<StudyMapScreen>)
     }
     
+    @Dependency(\.naverMapManager) var naverMapManager
+    
     var body: some ReducerOf<Self> {
         Reduce<State, Action> { state, action in
             switch action {
@@ -46,6 +48,13 @@ struct StudyMapCoordinator {
             case .router(.routeAction(id: .search, action: .search(.viewTransition(.goToBack)))):
                 state.routes.goBack()
                 
+            case let .router(.routeAction(id: .search, action: .search(.viewTransition(.goToResultLocation(location))))):
+                
+                return .routeWithDelaysIfUnsupported(state.routes, action: \.router) {
+                    $0.goBack()
+                    
+                    naverMapManager.moveToSpecificLocation(location: location)
+                }
             default :
                 break
             }
