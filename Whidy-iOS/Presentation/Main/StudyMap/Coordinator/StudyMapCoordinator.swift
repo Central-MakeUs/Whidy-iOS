@@ -50,10 +50,9 @@ struct StudyMapCoordinator {
                 
             case let .router(.routeAction(id: .search, action: .search(.viewTransition(.goToResultLocation(location))))):
                 
-                return .routeWithDelaysIfUnsupported(state.routes, action: \.router) {
-                    $0.goBack()
-                    naverMapManager.moveToSpecificLocation(location: location)
-                }
+                state.routes.goBackTo(id: .studyMap)
+                naverMapManager.moveToSpecificLocation(location: location)
+                
             default :
                 break
             }
