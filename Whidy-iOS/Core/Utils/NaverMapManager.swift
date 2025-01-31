@@ -94,7 +94,7 @@ final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelega
         
         ///let specificLocation = NMGLatLng(lat: 37.566610, lng: 126.978388)
         let specificLocation = NMGLatLng(lat: location.latitude, lng: location.longitude)
-        let cameraUpdate = NMFCameraUpdate(position: NMFCameraPosition(specificLocation, zoom: 15))
+        let cameraUpdate = NMFCameraUpdate(position: NMFCameraPosition(specificLocation, zoom: 20))
 
         view.mapView.moveCamera(cameraUpdate) { [weak self] isCancelled in
             guard let self else { return }
@@ -104,8 +104,22 @@ final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelega
             } else {
                 Logger.debug("moveToSpecificLocation success ✅✅✅✅")
                 onMoveToSpecificLocation.send(location)
+                
+                /// set Marker
+                setSpecificLocationMaker(location: location)
             }
         }
+    }
+    
+    private func setSpecificLocationMaker(location : SearchMockData) {
+        let marker = NMFMarker()
+        marker.position = NMGLatLng(lat: location.latitude, lng: location.longitude)
+        marker.captionText = location.placeName
+        marker.captionTextSize = 12
+        marker.captionColor = UIColor(hexCode: ColorSystem.grayG800.uIntToString)
+        marker.captionHaloColor = UIColor(hexCode: ColorSystem.white.uIntToString)
+        
+        marker.mapView = view.mapView
     }
     
     func mapView(_ mapView: NMFMapView, cameraWillChangeByReason reason: Int, animated: Bool) {
