@@ -39,7 +39,7 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
         longitude = location.coordinate.longitude
         altitude = location.altitude
         
-        Logger.debug("getCoordinates() - latitude: \(latitude ?? 0.0), longitude: \(longitude ?? 0.0)")
+//        Logger.debug("getCoordinates() - latitude: \(latitude ?? 0.0), longitude: \(longitude ?? 0.0)")
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

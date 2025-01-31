@@ -124,6 +124,7 @@
 		6BF2D87C2D4A568E00252A43 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2D87B2D4A568E00252A43 /* LocationManager.swift */; };
 		6BF2D87E2D4A66A300252A43 /* AuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2D87D2D4A66A300252A43 /* AuthInterceptor.swift */; };
 		6BF2D8802D4A6FD700252A43 /* OnboardingCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2D87F2D4A6FD700252A43 /* OnboardingCoordinatorView.swift */; };
+		6BF2D8822D4C51E600252A43 /* SearchView+ChildView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2D8812D4C51E600252A43 /* SearchView+ChildView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -247,6 +248,7 @@
 		6BF2D87B2D4A568E00252A43 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		6BF2D87D2D4A66A300252A43 /* AuthInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterceptor.swift; sourceTree = "<group>"; };
 		6BF2D87F2D4A6FD700252A43 /* OnboardingCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorView.swift; sourceTree = "<group>"; };
+		6BF2D8812D4C51E600252A43 /* SearchView+ChildView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchView+ChildView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -756,6 +758,7 @@
 			isa = PBXGroup;
 			children = (
 				6BF2D8612D49ED3200252A43 /* SearchView.swift */,
+				6BF2D8812D4C51E600252A43 /* SearchView+ChildView.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -925,6 +928,7 @@
 				6B62207F2D37AAF500C5F2C8 /* StudyMapScreen+Identifiable.swift in Sources */,
 				6B6220802D37AAF500C5F2C8 /* StudyMapScreen.swift in Sources */,
 				6B6220AD2D38A4C000C5F2C8 /* WebView.swift in Sources */,
+				6BF2D8822D4C51E600252A43 /* SearchView+ChildView.swift in Sources */,
 				6B62763A2D35EFFB00843C9E /* ProfileImageModifier.swift in Sources */,
 				6B62763B2D35EFFB00843C9E /* TextToButtonModifier.swift in Sources */,
 				6B62763C2D35EFFB00843C9E /* NormalTextFieldModifier.swift in Sources */,
