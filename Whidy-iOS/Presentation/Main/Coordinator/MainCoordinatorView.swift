@@ -13,7 +13,6 @@ struct MainCoordinatorView: View {
     
     var body: some View {
         WithPerceptionTracking {
-            ZStack {
                 TabView(selection: $store.selectedTab.sending(\.tabSelected)) {
                     StudyMapCoordinatorView(store: store.scope(state: \.studyMap, action: \.studyMap))
                         .tabItem {
@@ -35,8 +34,6 @@ struct MainCoordinatorView: View {
                             Text("마이")
                         }
                         .tag(MainCoordinator.Tab.myPage)
-                }
-                .zIndex(0)
             }
             .onAppear {
                 Logger.debug("MainCoordinator OnAppear")

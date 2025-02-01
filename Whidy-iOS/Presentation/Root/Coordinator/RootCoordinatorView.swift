@@ -13,7 +13,7 @@ struct RootCoordinatorView: View {
     
     var body: some View {
         WithPerceptionTracking {
-            ZStack {
+            VStack {
 //                if store.memberSession.isLoggedIn {
                 if true {
                     MainCoordinatorView(store: store.scope(state: \.main, action: \.main))
