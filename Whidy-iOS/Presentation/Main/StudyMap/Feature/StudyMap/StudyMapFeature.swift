@@ -14,6 +14,9 @@ struct StudyMapFeature {
     struct State : Equatable {
         let id = UUID()
         var filterCase : [MapFilterCase] =  MapFilterCase.getAllFilters()
+        
+        var isSpecificLocation : Bool = false
+        var specificLocation : SearchMockData = .init()
     }
     
     enum Action : BindableAction {
@@ -60,6 +63,7 @@ extension StudyMapFeature {
         Reduce { state, action in
             switch action {
             case .viewTransition(.onAppear):
+                Logger.debug("StudyMap - onAppear")
                 return .run { send in
                     await send(.mapProvider(.registerPublisher))
                 }
@@ -95,6 +99,8 @@ extension StudyMapFeature {
                 
             case let .mapProvider(.onMoveToSpecificLocation(location)):
                 Logger.debug("studyMapFeature onMoveToSpecificLocation \(location) ✅✅✅✅")
+                state.isSpecificLocation = true
+                state.specificLocation = location
                 
             default:
                 break

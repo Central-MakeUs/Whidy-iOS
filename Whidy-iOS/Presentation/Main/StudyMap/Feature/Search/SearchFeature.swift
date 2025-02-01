@@ -110,9 +110,9 @@ extension SearchFeature {
 //MARK: - MockData
 struct SearchMockData : Equatable, Identifiable {
     let id : UUID = UUID()
-    var placeName : String
-    var address : String
-    var latitude : Double
-    var longitude : Double
+    var placeName : String = .init()
+    var address : String = .init()
+    var latitude : Double = .init()
+    var longitude : Double = .init()
 }
 

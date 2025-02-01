@@ -8,6 +8,51 @@
 import SwiftUI
 
 extension StudyMapView {
+    var specificSearchBtn : some View {
+        VStack {
+            HStack(spacing:0){
+                TextField("", text: $store.specificLocation.placeName)
+                    .padding(.leading, 16) // 왼쪽 패딩 추가
+                    .frame(height: 38) // 고정 높이 설정
+                    .background(
+                        HStack {
+                            Text("")
+                                .fontModifier(fontSize: 16, weight: .semibold, color: ColorSystem.grayG300.rawValue)
+                                .padding(.leading, 16) // 플레이스홀더 왼쪽 패딩
+                            Spacer()
+                        }
+                    )
+                    .background(Color.white)
+                    .cornerRadius(8) // 모서리 둥글게
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8) // 테두리
+                            .stroke(Color(hex: ColorSystem.grayG100.rawValue), lineWidth: 1) // 테두리 색상과 두께
+                    )
+                    .frame(maxWidth: .infinity)
+                    .disabled(true)
+                    .onTapGesture {
+                        Logger.debug("검색 화면 이동")
+                    }
+                
+                Spacer()
+                
+                Image(.cancelBtn1)
+                    .resizable()
+                    .frame(width: 38, height: 38)
+                    .asButton {
+                        Logger.debug("메인 지도 이동")
+                    }
+                    .padding(.leading, 6)
+            }
+            .padding(.horizontal, 14)
+            .padding(.bottom, 6)
+        }
+        .background(
+            Rectangle()
+                .fill(Color(hex: ColorSystem.white.rawValue))
+        )
+    }
+    
     var searchBar : some View {
         TextField("", text: $text)
             .padding(.leading, 16) // 왼쪽 패딩 추가
@@ -15,7 +60,7 @@ extension StudyMapView {
             .background(
                 HStack {
                     Text("원하는 공간을 검색해보세요")
-                        .fontModifier(fontSize: 16, weight: .regular, color: ColorSystem.grayG300.rawValue)
+                        .fontModifier(fontSize: 16, weight: .semibold, color: ColorSystem.grayG300.rawValue)
                         .padding(.leading, 16) // 플레이스홀더 왼쪽 패딩
                     Spacer()
                     Image(.search)

@@ -94,7 +94,7 @@ final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelega
         
         ///let specificLocation = NMGLatLng(lat: 37.566610, lng: 126.978388)
         let specificLocation = NMGLatLng(lat: location.latitude, lng: location.longitude)
-        let cameraUpdate = NMFCameraUpdate(position: NMFCameraPosition(specificLocation, zoom: 20))
+        let cameraUpdate = NMFCameraUpdate(position: NMFCameraPosition(specificLocation, zoom: 15))
 
         view.mapView.moveCamera(cameraUpdate) { [weak self] isCancelled in
             guard let self else { return }
