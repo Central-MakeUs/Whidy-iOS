@@ -19,6 +19,8 @@ struct StudyMapCoordinatorView : View {
                 StudyMapView(store: store)
             case let .search(store):
                 SearchView(store: store)
+            case let .infoDetail(store):
+                InfoDetailView(store: store)
             }
         }
     }
@@ -45,11 +47,16 @@ struct StudyMapCoordinator {
             case .router(.routeAction(id: .studyMap, action: .studyMap(.viewTransition(.goToSearch)))):
                 state.routes.push(.search(.init()))
                 
+            case .router(.routeAction(id: .studyMap, action: .studyMap(.viewTransition(.goToInfoDetail)))):
+                state.routes.presentCover(.infoDetail(.init()))
+            
             case .router(.routeAction(id: .search, action: .search(.viewTransition(.goToBack)))):
-                state.routes.goBack()
+                state.routes.goBackTo(id: .studyMap)
+                
+            case .router(.routeAction(id: .infoDetail, action: .infoDetail(.viewTransition(.dismiss)))):
+                state.routes.goBackTo(id: .studyMap)
                 
             case let .router(.routeAction(id: .search, action: .search(.viewTransition(.goToResultLocation(location))))):
-                
                 state.routes.goBackTo(id: .studyMap)
                 naverMapManager.moveToSpecificLocation(location: location)
                 

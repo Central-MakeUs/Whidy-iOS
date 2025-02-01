@@ -12,4 +12,5 @@ import ComposableArchitecture
 enum StudyMapScreen {
     case studyMap(StudyMapFeature)
     case search(SearchFeature)
+    case infoDetail(InfoDetailFeature)
 }

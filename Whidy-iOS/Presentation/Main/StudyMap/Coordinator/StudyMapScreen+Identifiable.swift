@@ -12,12 +12,15 @@ extension StudyMapScreen.State : Identifiable {
                 .studyMap
         case .search:
                 .search
+        case .infoDetail:
+                .infoDetail
         }
     }
     
     enum ID : Identifiable {
         case studyMap
         case search
+        case infoDetail
         var id: ID { self }
     }
 }
