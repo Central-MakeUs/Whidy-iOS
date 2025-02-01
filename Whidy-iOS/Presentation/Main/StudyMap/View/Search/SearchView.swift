@@ -73,7 +73,7 @@ extension SearchView {
                             )
                     }
                 }
-            }.opacity(store.isHideLatestSearch ? 0 : 1)
+            }.opacity(store.isHideLatestSearch || store.isSearchSuccess ? 0 : 1)
         }
     }
     

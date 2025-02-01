@@ -9,10 +9,33 @@ import SwiftUI
 
 struct InfoView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            GeometryReader { geometry in
+                Color.clear
+                    .preference(key: ScrollOffsetPreferenceKey.self, value: geometry.frame(in: .global).minY)
+            }
+            .frame(height: 0)
+            
+            VStack {
+                Text("hi")
+                Text("hi")
+                Text("hi")
+                Text("hi")
+                Text("hi")
+            }
+        }
+        .padding(.top, 30)
+        .cornerRadius(17)
+        .background(Color.white)
     }
 }
 
-#Preview {
-    InfoView()
+struct ScrollOffsetPreferenceKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+    
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value += nextValue()
+        
+        Logger.debug(value)
+    }
 }

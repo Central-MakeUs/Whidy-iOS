@@ -17,6 +17,8 @@ struct StudyMapFeature {
         
         var isSpecificLocation : Bool = false
         var specificLocation : SearchMockData = .init()
+        
+        var showBottomSheet : Bool = false
     }
     
     enum Action : BindableAction {
@@ -30,6 +32,7 @@ struct StudyMapFeature {
     enum ViewTransition {
         case onAppear
         case goToSearch
+        case goToInfoDetail
     }
     
     enum NetworkReponse {
@@ -100,7 +103,8 @@ extension StudyMapFeature {
             case let .mapProvider(.onMoveToSpecificLocation(location)):
                 Logger.debug("studyMapFeature onMoveToSpecificLocation \(location) ✅✅✅✅")
                 state.isSpecificLocation = true
-                state.specificLocation = location
+                state.showBottomSheet = true
+                state.specificLocation = location                
                 
             default:
                 break
