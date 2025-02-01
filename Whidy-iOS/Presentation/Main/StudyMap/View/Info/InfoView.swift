@@ -35,7 +35,5 @@ struct ScrollOffsetPreferenceKey: PreferenceKey {
     
     static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
         value += nextValue()
-        
-        Logger.debug(value)
     }
 }

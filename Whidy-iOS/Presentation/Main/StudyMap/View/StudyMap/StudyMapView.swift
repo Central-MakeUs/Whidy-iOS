@@ -40,7 +40,7 @@ struct StudyMapView: View {
                 currentOffset = SheetHeight.bottom
             }
             .overlay {
-                if store.showBottomSheet {
+                if store.isShowInfoDetial {
                     InfoView()
                         .disabled(true)
                         .frame(height: UIScreen.main.bounds.size.height)

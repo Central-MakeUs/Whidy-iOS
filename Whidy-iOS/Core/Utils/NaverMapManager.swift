@@ -15,6 +15,8 @@ final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelega
     private let locationManager = LocationManager.shared
     
     let view = NMFNaverMapView(frame: .zero)
+    let specificMarker : NMFMarker = NMFMarker()
+    
     @Published var coord: (Double, Double) = (0.0, 0.0)
     @Published var userLocation: (Double, Double) = (0.0, 0.0)
     
@@ -76,19 +78,7 @@ final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelega
         }
     }
     
-    private func fetchUserLocation() {
-        if let lat = locationManager.getCoordinates().latitude, let lng = locationManager.getCoordinates().longitude {
-            Logger.debug("fetchUserLocation Success ✅")
-            let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: lat, lng: lng), zoomTo: 15)
-            cameraUpdate.animation = .easeIn
-            cameraUpdate.animationDuration = 0.5
-            
-            view.mapView.moveCamera(cameraUpdate)
-        } else {
-            Logger.warning("fetchUserLocation Fail ❌")
-        }
-    }
-    
+    /// SpecificLocation으로 이동하기
     func moveToSpecificLocation(location : SearchMockData) {
         Logger.debug("moveToSpecificLocation lat: \(location.latitude), lng: \(location.longitude) ✅✅✅✅")
         
@@ -111,25 +101,44 @@ final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelega
         }
     }
     
+    /// Specific Location에서 나의 위치로 이동하기
+    func cancelSpecificLocation() {
+        Logger.debug("cancelSpecificLocation ✅✅✅✅")
+        fetchUserLocation(withAnimation: false)
+        removeSpecificMarker()
+    }
+    
+    /// Specific Marker 지우기
+    private func removeSpecificMarker() {
+        specificMarker.mapView = nil
+    }
+    
+    /// 나의 위치로 이동하기
+    private func fetchUserLocation(withAnimation : Bool = true) {
+        if let lat = locationManager.getCoordinates().latitude, let lng = locationManager.getCoordinates().longitude {
+            Logger.debug("fetchUserLocation Success ✅")
+            let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: lat, lng: lng), zoomTo: 15)
+            
+            if withAnimation {
+                cameraUpdate.animation = .easeIn
+                cameraUpdate.animationDuration = 0.5
+            }
+            
+            view.mapView.moveCamera(cameraUpdate)
+        } else {
+            Logger.warning("fetchUserLocation Fail ❌")
+        }
+    }
+    
+    /// 특정위치에 Specific Marker 생성하기
     private func setSpecificLocationMaker(location : SearchMockData) {
-        let marker = NMFMarker()
-        marker.position = NMGLatLng(lat: location.latitude, lng: location.longitude)
-        marker.captionText = location.placeName
-        marker.captionTextSize = 12
-        marker.captionColor = UIColor(hexCode: ColorSystem.grayG800.uIntToString)
-        marker.captionHaloColor = UIColor(hexCode: ColorSystem.white.uIntToString)
+        specificMarker.position = NMGLatLng(lat: location.latitude, lng: location.longitude)
+        specificMarker.captionText = location.placeName
+        specificMarker.captionTextSize = 12
+        specificMarker.captionColor = UIColor(hexCode: ColorSystem.grayG800.uIntToString)
+        specificMarker.captionHaloColor = UIColor(hexCode: ColorSystem.white.uIntToString)
         
-        marker.mapView = view.mapView
-    }
-    
-    func mapView(_ mapView: NMFMapView, cameraWillChangeByReason reason: Int, animated: Bool) {
-        // 카메라 이동이 시작되기 전 호출되는 함수
-        Logger.debug("cameraWillChangeByReason")
-    }
-    
-    func mapView(_ mapView: NMFMapView, cameraIsChangingByReason reason: Int) {
-        // 카메라의 위치가 변경되면 호출되는 함수
-        Logger.debug("cameraIsChangingByReason")
+        specificMarker.mapView = view.mapView
     }
 }
 
@@ -143,3 +152,13 @@ extension DependencyValues {
         set { self[NaverMapManagerKey.self] = newValue }
     }
 }
+
+//    func mapView(_ mapView: NMFMapView, cameraWillChangeByReason reason: Int, animated: Bool) {
+//        // 카메라 이동이 시작되기 전 호출되는 함수
+//        Logger.debug("cameraWillChangeByReason")
+//    }
+//
+//    func mapView(_ mapView: NMFMapView, cameraIsChangingByReason reason: Int) {
+//        // 카메라의 위치가 변경되면 호출되는 함수
+//        Logger.debug("cameraIsChangingByReason")
+//    }

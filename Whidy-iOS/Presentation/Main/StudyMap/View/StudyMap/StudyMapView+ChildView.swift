@@ -38,9 +38,10 @@ extension StudyMapView {
                 
                 Image(.cancelBtn1)
                     .resizable()
-                    .frame(width: 38, height: 38)
+                    .frame(width: 24, height: 24)
                     .asButton {
                         Logger.debug("메인 지도 이동")
+                        store.send(.buttonTapped(.specificLocationCancel))
                     }
                     .padding(.leading, 6)
             }
@@ -105,9 +106,6 @@ extension StudyMapView {
         VStack {
             HStack(spacing:0){
                 searchBar
-                    .onTapGesture {
-                        Logger.debug("SearchBar Tab ---> to SearchView")
-                    }
                 
                 Spacer()
                 

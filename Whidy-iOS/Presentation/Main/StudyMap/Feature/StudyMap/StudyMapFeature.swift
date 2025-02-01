@@ -18,7 +18,7 @@ struct StudyMapFeature {
         var isSpecificLocation : Bool = false
         var specificLocation : SearchMockData = .init()
         
-        var showBottomSheet : Bool = false
+        var isShowInfoDetial : Bool = false
     }
     
     enum Action : BindableAction {
@@ -41,6 +41,7 @@ struct StudyMapFeature {
     
     enum ButtonTapped {
         case search
+        case specificLocationCancel
     }
     
     enum MapProvider {
@@ -86,6 +87,13 @@ extension StudyMapFeature {
                 return .run { send in
                     await send(.viewTransition(.goToSearch))
                 }
+                
+            case .buttonTapped(.specificLocationCancel):
+                state.isSpecificLocation = false
+                state.isShowInfoDetial = false
+                state.specificLocation = .init()
+                naverMapManager.cancelSpecificLocation()
+                
             default:
                 break
             }
@@ -103,7 +111,7 @@ extension StudyMapFeature {
             case let .mapProvider(.onMoveToSpecificLocation(location)):
                 Logger.debug("studyMapFeature onMoveToSpecificLocation \(location) ✅✅✅✅")
                 state.isSpecificLocation = true
-                state.showBottomSheet = true
+                state.isShowInfoDetial = true
                 state.specificLocation = location                
                 
             default:

@@ -37,7 +37,7 @@ struct InfoDetailView: View {
                 scrollOffset = value // ScrollView의 오프셋 업데이트
                 Logger.debug("scrollOffset: \(scrollOffset)")
                 
-                if scrollOffset >= 120 {
+                if scrollOffset >= 150 {
                     store.send(.viewTransition(.dismiss))
                 }
             }
