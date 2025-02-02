@@ -62,3 +62,34 @@ extension View {
         modifier(RedactedModifier(isVisible: isVisible, redactedType: redactedType))
     }
 }
+
+extension View {
+    // Safe Area의 상단 값을 가져오는 함수
+    func getSafeAreaTop() -> CGFloat {
+        return getSafeAreaInsets().top
+    }
+
+    // Safe Area의 하단 값을 가져오는 함수
+    func getSafeAreaBottom() -> CGFloat {
+        return getSafeAreaInsets().bottom
+    }
+
+    // Safe Area의 좌측 값을 가져오는 함수
+    func getSafeAreaLeading() -> CGFloat {
+        return getSafeAreaInsets().left
+    }
+
+    // Safe Area의 우측 값을 가져오는 함수
+    func getSafeAreaTrailing() -> CGFloat {
+        return getSafeAreaInsets().right
+    }
+
+    // 모든 Safe Area 값을 가져오는 함수 (UIEdgeInsets 형태로 반환)
+    func getSafeAreaInsets() -> UIEdgeInsets {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first else {
+            return .zero
+        }
+        return window.safeAreaInsets
+    }
+}
