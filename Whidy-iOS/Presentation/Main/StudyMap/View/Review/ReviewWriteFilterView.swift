@@ -15,6 +15,11 @@ struct ReviewWriteFilterView: View {
         WithPerceptionTracking {
             VStack {
                 Text("ReviewWriteFilterView")
+                
+                Text("다음")
+                    .asButton {
+                        store.send(.viewTransition(.goToReviewText))
+                    }
             }
         }
     }

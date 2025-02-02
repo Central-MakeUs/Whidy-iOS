@@ -54,7 +54,7 @@ struct StudyMapCoordinator {
                 state.routes.push(.search(.init()))
                 
             case .router(.routeAction(id: .studyMap, action: .studyMap(.viewTransition(.goToInfoDetail)))):
-                state.routes.presentCover(.infoDetail(.init()))
+                state.routes.presentCover(.infoDetail(.init()), embedInNavigationView: true)
             
             case .router(.routeAction(id: .search, action: .search(.viewTransition(.goToBack)))):
                 state.routes.goBackTo(id: .studyMap)
@@ -68,6 +68,16 @@ struct StudyMapCoordinator {
             case let .router(.routeAction(id: .search, action: .search(.viewTransition(.goToResultLocation(location))))):
                 state.routes.goBackTo(id: .studyMap)
                 naverMapManager.moveToSpecificLocation(location: location)
+                
+            /// review 관련
+            case .router(.routeAction(id: .infoDetail, action: .infoDetail(.viewTransition(.goToReviewExpanded)))):
+                state.routes.push(.reviewExpanded(.init()))
+                
+            case .router(.routeAction(id: .infoDetail, action: .infoDetail(.viewTransition(.goToReviewWrite)))):
+                state.routes.push(.reviewWriteFilter(.init()))
+                
+            case .router(.routeAction(id: .reviewWriteFilter, action: .reviewWriteFilter(.viewTransition(.goToReviewText)))):
+                state.routes.push(.reviewWriteText(.init()))
                 
             default :
                 break

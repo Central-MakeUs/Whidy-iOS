@@ -26,6 +26,8 @@ struct InfoDetailFeature {
     
     enum ViewTransition {
         case onAppear
+        case goToReviewExpanded
+        case goToReviewWrite
         case dismiss
     }
     

@@ -18,13 +18,17 @@ struct InfoDetailView: View {
             VStack {
                 ScrollView {
                     VStack(spacing: 20) {
-                        ForEach(0..<5) { index in
-                            Text("Item \(index)")
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(Color.gray.opacity(0.2))
-                                .cornerRadius(8)
-                        }
+                        Text("폴드 커피")
+                        
+                        Text("후기")
+                            .asButton {
+                                store.send(.viewTransition(.goToReviewWrite))
+                            }
+                        
+                        Text("후기 전체보기")
+                            .asButton {
+                                store.send(.viewTransition(.goToReviewExpanded))
+                            }
                     }
                     .background(GeometryReader { geometry in
                         Color.clear

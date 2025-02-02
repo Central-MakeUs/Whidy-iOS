@@ -21,11 +21,12 @@ struct ReviewWriteFilterFeature {
         case networkResponse(NetworkReponse)
         case buttonTapped(ButtonTapped)
         case viewTransition(ViewTransition)
-                case anyAction(AnyAction)
+        case anyAction(AnyAction)
     }
     
     enum ViewTransition {
         case onAppear
+        case goToReviewText
     }
     
     enum NetworkReponse {
