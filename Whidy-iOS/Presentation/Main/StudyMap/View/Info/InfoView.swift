@@ -9,23 +9,29 @@ import SwiftUI
 
 struct InfoView: View {
     var body: some View {
-        ScrollView {
-            GeometryReader { geometry in
-                Color.clear
-                    .preference(key: ScrollOffsetPreferenceKey.self, value: geometry.frame(in: .global).minY)
-            }
-            .frame(height: 0)
+        ZStack(alignment:.top) {            
+            Capsule()
+                .frame(width: 34, height: 3)
+                .foregroundColor(Color(hex: ColorSystem.graye8e9ed.rawValue))
+                .padding(.top, 6)
             
-            VStack {
-                Text("hi")
-                Text("hi")
-                Text("hi")
-                Text("hi")
-                Text("hi")
+            ScrollView {
+                GeometryReader { geometry in
+                    Color.clear
+                        .preference(key: ScrollOffsetPreferenceKey.self, value: geometry.frame(in: .global).minY)
+                }
+                .frame(height: 0)
+                
+                VStack {
+                    Text("hi")
+                    Text("hi")
+                    Text("hi")
+                    Text("hi")
+                    Text("hi")
+                }
             }
+            .padding(.top, 30)
         }
-        .padding(.top, 30)
-        .cornerRadius(17)
         .background(Color.white)
     }
 }

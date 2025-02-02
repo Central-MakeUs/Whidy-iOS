@@ -13,37 +13,39 @@ struct InfoDetailView: View {
     @State private var dragOffset: CGFloat = 0
 
     var body: some View {
-        VStack {
-            ScrollView {
-                VStack(spacing: 20) {
-                    ForEach(0..<50) { index in
-                        Text("Item \(index)")
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.gray.opacity(0.2))
-                            .cornerRadius(8)
+        WithPerceptionTracking {
+            VStack {
+                ScrollView {
+                    VStack(spacing: 20) {
+                        ForEach(0..<5) { index in
+                            Text("Item \(index)")
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.gray.opacity(0.2))
+                                .cornerRadius(8)
+                        }
+                    }
+                    .background(GeometryReader { geometry in
+                        Color.clear
+                            .preference(
+                                key: ScrollOffsetKey.self,
+                                value: geometry.frame(in: .named("scrollView")).origin.y
+                            )
+                    })
+                }
+                .coordinateSpace(name: "scrollView")
+                .onPreferenceChange(ScrollOffsetKey.self) { value in
+                    scrollOffset = value // ScrollView의 오프셋 업데이트
+                    Logger.debug("scrollOffset: \(scrollOffset)")
+                    
+                    if scrollOffset >= 150 {
+                        store.send(.viewTransition(.dismiss))
                     }
                 }
-                .background(GeometryReader { geometry in
-                    Color.clear
-                        .preference(
-                            key: ScrollOffsetKey.self,
-                            value: geometry.frame(in: .named("scrollView")).origin.y
-                        )
-                })
             }
-            .coordinateSpace(name: "scrollView")
-            .onPreferenceChange(ScrollOffsetKey.self) { value in
-                scrollOffset = value // ScrollView의 오프셋 업데이트
-                Logger.debug("scrollOffset: \(scrollOffset)")
-                
-                if scrollOffset >= 150 {
-                    store.send(.viewTransition(.dismiss))
-                }
-            }
+            .background(Color.white)
+            .edgesIgnoringSafeArea(.all)
         }
-        .background(Color.white)
-        .edgesIgnoringSafeArea(.all)
     }
 }
 

@@ -59,7 +59,7 @@ final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelega
             coord = (locationManager.getCoordinates().latitude ?? 0.0, locationManager.getCoordinates().longitude ?? 0.0)
             userLocation = (locationManager.getCoordinates().latitude ?? 0.0, locationManager.getCoordinates().longitude ?? 0.0)
             
-            fetchUserLocation()
+            fetchUserLocation(withAnimation: true)
             
         @unknown default:
             break

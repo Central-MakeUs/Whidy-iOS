@@ -32,6 +32,7 @@ struct StudyMapFeature {
     enum ViewTransition {
         case onAppear
         case goToSearch
+        case returnToSearch
         case goToInfoDetail
     }
     
@@ -41,6 +42,7 @@ struct StudyMapFeature {
     
     enum ButtonTapped {
         case search
+        case specificLocationToSearch
         case specificLocationCancel
     }
     
@@ -86,6 +88,13 @@ extension StudyMapFeature {
             case .buttonTapped(.search):
                 return .run { send in
                     await send(.viewTransition(.goToSearch))
+                }
+                
+            case .buttonTapped(.specificLocationToSearch):
+                Logger.debug("specificLocationToSearch")
+                
+                return .run { send in
+                    await send(.viewTransition(.returnToSearch))
                 }
                 
             case .buttonTapped(.specificLocationCancel):

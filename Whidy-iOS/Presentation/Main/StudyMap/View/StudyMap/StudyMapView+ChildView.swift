@@ -31,7 +31,7 @@ extension StudyMapView {
                     .frame(maxWidth: .infinity)
                     .disabled(true)
                     .onTapGesture {
-                        Logger.debug("검색 화면 이동")
+                        store.send(.buttonTapped(.specificLocationToSearch))
                     }
                 
                 Spacer()
@@ -40,7 +40,6 @@ extension StudyMapView {
                     .resizable()
                     .frame(width: 24, height: 24)
                     .asButton {
-                        Logger.debug("메인 지도 이동")
                         store.send(.buttonTapped(.specificLocationCancel))
                     }
                     .padding(.leading, 6)

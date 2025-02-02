@@ -42,8 +42,9 @@ struct StudyMapView: View {
             .overlay {
                 if store.isShowInfoDetial {
                     InfoView()
+                        .clipShape(RoundedRectangle(cornerRadius: 22))
                         .disabled(true)
-                        .frame(height: UIScreen.main.bounds.size.height)
+                        .frame(width:UIScreen.main.bounds.width, height: UIScreen.main.bounds.size.height)
                         .offset(y: dragOffset)
                         .gesture(DragGesture()
                             .onChanged { gesture in

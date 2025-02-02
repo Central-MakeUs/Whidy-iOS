@@ -53,6 +53,9 @@ struct StudyMapCoordinator {
             case .router(.routeAction(id: .search, action: .search(.viewTransition(.goToBack)))):
                 state.routes.goBackTo(id: .studyMap)
                 
+            case .router(.routeAction(id: .studyMap, action: .studyMap(.viewTransition(.returnToSearch)))):
+                state.routes.push(.search(.init()))
+                
             case .router(.routeAction(id: .infoDetail, action: .infoDetail(.viewTransition(.dismiss)))):
                 state.routes.goBackTo(id: .studyMap)
                 
