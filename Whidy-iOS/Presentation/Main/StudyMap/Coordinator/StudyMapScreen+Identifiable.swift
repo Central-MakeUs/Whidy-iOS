@@ -14,6 +14,13 @@ extension StudyMapScreen.State : Identifiable {
                 .search
         case .infoDetail:
                 .infoDetail
+        case .reviewExpanded:
+                .reviewExpanded
+        case .reviewWriteFilter:
+                .reviewWriteFilter
+        case .reviewWriteText:
+                .reviewWriteText
+        
         }
     }
     
@@ -21,6 +28,9 @@ extension StudyMapScreen.State : Identifiable {
         case studyMap
         case search
         case infoDetail
+        case reviewExpanded
+        case reviewWriteFilter
+        case reviewWriteText
         var id: ID { self }
     }
 }

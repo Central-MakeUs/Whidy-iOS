@@ -21,6 +21,12 @@ struct StudyMapCoordinatorView : View {
                 SearchView(store: store)
             case let .infoDetail(store):
                 InfoDetailView(store: store)
+            case let .reviewExpanded(store):
+                ReviewExpandedView(store: store)
+            case let .reviewWriteFilter(store):
+                ReviewWriteFilterView(store: store)
+            case let .reviewWriteText(store):
+                ReviewWriteTextView(store: store)
             }
         }
     }
