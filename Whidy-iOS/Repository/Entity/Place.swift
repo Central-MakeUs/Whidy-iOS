@@ -8,9 +8,9 @@
 import Foundation
 import CoreData
 
-struct Place: Identifiable {
+struct Place: Identifiable, Equatable {
     let id: Int
-    let name: String
+    var name: String
     let address: String
     let latitude: Double
     let longitude: Double
@@ -18,7 +18,7 @@ struct Place: Identifiable {
     let reviewScore: Double?
     let placeType: PlaceType
 
-    enum PlaceType: String {
+    enum PlaceType: String, Equatable {
         case studyCafe = "STUDY_CAFE"
         case generalCafe = "GENERAL_CAFE"
         case franchiseCafe = "FRANCHISE_CAFE"
@@ -26,9 +26,24 @@ struct Place: Identifiable {
         case freeStudySpace = "FREE_STUDY_SPACE"
         case freeClothesRental = "FREE_CLOTHES_RENTAL"
     }
+    
+    static func == (lhs: Place, rhs: Place) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
 extension Place {
+    init() {
+        self.id = .init()
+        self.name = .init()
+        self.address = .init()
+        self.latitude = .init()
+        self.longitude = .init()
+        self.beveragePrice = .init()
+        self.reviewScore = .init()
+        self.placeType = .generalCafe
+    }
+    
     init(dto: PlaceDTO) {
         self.id = dto.id
         self.name = dto.name
