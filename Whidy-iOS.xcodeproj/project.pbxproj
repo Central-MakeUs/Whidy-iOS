@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B1B562E2D510324000C7102 /* CafeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1B562D2D510324000C7102 /* CafeDTO.swift */; };
+		6B1B56302D510370000C7102 /* Cafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1B562F2D510370000C7102 /* Cafe.swift */; };
 		6B62206F2D37A8A300C5F2C8 /* MainCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B62206E2D37A8A300C5F2C8 /* MainCoordinatorView.swift */; };
 		6B6220712D37A8AF00C5F2C8 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6220702D37A8AF00C5F2C8 /* MainCoordinator.swift */; };
 		6B62207C2D37AA9700C5F2C8 /* StudyMapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B62207B2D37AA9700C5F2C8 /* StudyMapCoordinator.swift */; };
@@ -158,6 +160,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6B1B562D2D510324000C7102 /* CafeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeDTO.swift; sourceTree = "<group>"; };
+		6B1B562F2D510370000C7102 /* Cafe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cafe.swift; sourceTree = "<group>"; };
 		6B62206E2D37A8A300C5F2C8 /* MainCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorView.swift; sourceTree = "<group>"; };
 		6B6220702D37A8AF00C5F2C8 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		6B62207B2D37AA9700C5F2C8 /* StudyMapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyMapCoordinator.swift; sourceTree = "<group>"; };
@@ -463,6 +467,7 @@
 				6B6221842D3B720E00C5F2C8 /* MemberSession.swift */,
 				6BF2D86C2D4A414C00252A43 /* LatestSearch.swift */,
 				6BF2D98E2D4FA84A00252A43 /* Place.swift */,
+				6B1B562F2D510370000C7102 /* Cafe.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -872,6 +877,7 @@
 			isa = PBXGroup;
 			children = (
 				6BF2D98C2D4FA83E00252A43 /* PlaceDTO.swift */,
+				6B1B562D2D510324000C7102 /* CafeDTO.swift */,
 			);
 			path = Place;
 			sourceTree = "<group>";
@@ -1001,6 +1007,7 @@
 				6B6276612D35F02200843C9E /* CommonRouter.swift in Sources */,
 				6B6275EC2D35EFE200843C9E /* Optional+Extension.swift in Sources */,
 				6B6275ED2D35EFE200843C9E /* Image+Extension.swift in Sources */,
+				6B1B562E2D510324000C7102 /* CafeDTO.swift in Sources */,
 				6B6275EE2D35EFE200843C9E /* UIApplication+Extension.swift in Sources */,
 				6B62206F2D37A8A300C5F2C8 /* MainCoordinatorView.swift in Sources */,
 				6BF2D98A2D4FA76500252A43 /* NetworkManager+Place.swift in Sources */,
@@ -1085,6 +1092,7 @@
 				6B6275F62D35EFE200843C9E /* UserDefaults+Extension.swift in Sources */,
 				6B62208D2D3882C000C5F2C8 /* ScrapScreen+Identifiable.swift in Sources */,
 				6B6220B82D38E28E00C5F2C8 /* URL+Extension.swift in Sources */,
+				6B1B56302D510370000C7102 /* Cafe.swift in Sources */,
 				6B62208E2D3882C000C5F2C8 /* ScrapCoordinator.swift in Sources */,
 				6B62208F2D3882C000C5F2C8 /* ScrapScreen.swift in Sources */,
 				6B6220862D37B0C400C5F2C8 /* Font.swift in Sources */,

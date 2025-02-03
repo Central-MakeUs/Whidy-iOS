@@ -10,6 +10,10 @@ import Alamofire
 
 enum PlaceRouter {
     case place(condition : PlaceSearchCondition)
+    case placeGeneralCafe(id : Int)
+    case placeStudyCafe(id : Int)
+    case placeFreeStudy(id : Int)
+    case placeFranchise(id : Int)
 }
 
 extension PlaceRouter : TargetType {
@@ -31,6 +35,14 @@ extension PlaceRouter : TargetType {
         switch self {
         case .place:
             return "api/place"
+        case let .placeGeneralCafe(id):
+            return "/api/place/general-cafe/\(id)"
+        case let .placeStudyCafe(id):
+            return "/api/place/study-cafe/\(id)"
+        case let .placeFreeStudy(id):
+            return "/api/place/free-study/\(id)"
+        case let .placeFranchise(id):
+            return "/api/place/franchise-cafe/\(id)"
         }
     }
     
@@ -51,6 +63,8 @@ extension PlaceRouter : TargetType {
                 "placeType" : condition.placeType.joined(separator: ","),
                 "keyword" : condition.keyword
             ]
+        default:
+            return nil
         }
     }
     

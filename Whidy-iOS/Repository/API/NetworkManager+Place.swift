@@ -22,4 +22,17 @@ extension NetworkManager {
             }
         }
     }
+    
+    func getGeneralCafePlace(id : Int) async -> Result<Cafe, APIError> {
+        do {
+            let response = try await requestAPI(router: PlaceRouter.placeGeneralCafe(id: id), of: CafeDTO.self)
+            return .success(Cafe(dto: response))
+        } catch {
+            if let apiError = error as? APIError {
+                return .failure(apiError)
+            } else {
+                return .failure(APIError.unknown)
+            }
+        }
+    }
 }
