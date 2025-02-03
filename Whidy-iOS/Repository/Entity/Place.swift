@@ -9,13 +9,13 @@ import Foundation
 import CoreData
 
 struct Place: Identifiable {
-    let id: Int64
+    let id: Int
     let name: String
     let address: String
     let latitude: Double
     let longitude: Double
-    let beveragePrice: Int
-    let reviewScore: Float
+    let beveragePrice: Int?
+    let reviewScore: Double?
     let placeType: PlaceType
 
     enum PlaceType: String {
@@ -37,6 +37,6 @@ extension Place {
         self.longitude = dto.longitude
         self.beveragePrice = dto.beveragePrice
         self.reviewScore = dto.reviewScore
-        self.placeType = PlaceType(rawValue: dto.placeType.rawValue) ?? .generalCafe
+        self.placeType = PlaceType(rawValue: dto.placeType) ?? .generalCafe
     }
 }

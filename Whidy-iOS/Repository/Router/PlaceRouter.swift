@@ -44,17 +44,23 @@ extension PlaceRouter : TargetType {
     var parameter: Parameters? {
         switch self {
         case let .place(condition):
-            return condition.toDictionary()
+            return [
+                "centerLatitude": condition.centerLatitude,
+                "centerLongitude": condition.centerLongitude,
+                "radius" : condition.radius,
+                "placeType" : condition.placeType.joined(separator: ","),
+                "keyword" : condition.keyword
+            ]
         }
     }
-
+    
     var queryItems: [URLQueryItem]? {
         return nil
     }
-
+    
     var body: Data? {
         switch self {
-
+            
         default:
             return nil
         }

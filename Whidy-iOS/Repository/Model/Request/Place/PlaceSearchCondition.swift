@@ -12,14 +12,14 @@ struct PlaceSearchCondition: Encodable {
     var reviewScoreTo: Int?
     var beverageFrom: Int?
     var beverageTo: Int?
-    var placeType: [String]?
+    var placeType: [String] = .init()
     var businessDayOfWeek: [String]?
     var visitTimeFrom: LocalTime?
     var visitTimeTo: LocalTime?
     var centerLatitude: Double
     var centerLongitude: Double
     var radius: Double
-    var keyword: String?
+    var keyword: String = .init()
 
     enum CodingKeys: String, CodingKey {
         case reviewScoreFrom
