@@ -22,9 +22,17 @@ struct Place: Identifiable, Equatable {
         case studyCafe = "STUDY_CAFE"
         case generalCafe = "GENERAL_CAFE"
         case franchiseCafe = "FRANCHISE_CAFE"
-        case freePicture = "FREE_PICTURE"
         case freeStudySpace = "FREE_STUDY_SPACE"
-        case freeClothesRental = "FREE_CLOTHES_RENTAL"
+        
+        var caseTitle : String {
+            switch self {
+            case .freeStudySpace: return "무료 공부 공간"
+            case .franchiseCafe: return "프랜차이즈 카페"
+            case .generalCafe: return "개인 카페"
+            case .studyCafe: return "스터디 카페"
+                
+            }
+        }
     }
     
     static func == (lhs: Place, rhs: Place) -> Bool {

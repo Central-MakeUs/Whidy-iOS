@@ -65,7 +65,7 @@ struct StudyMapView: View {
 
 extension StudyMapView {
     enum SheetHeight {
-        static let bottom = UIScreen.main.bounds.size.height * (5/7)
+        static let bottom = UIScreen.main.bounds.size.height - 240 /// 고정값
     }
     enum SheetBoundary {
         static let high = UIScreen.main.bounds.size.height * (1/4)

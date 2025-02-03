@@ -21,7 +21,7 @@ final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelega
     @Published var userLocation: (Double, Double) = (0.0, 0.0)
     
     /// Feature Send Subject
-    let onMoveToSpecificLocation: PassthroughSubject<SearchMockData, Never> = .init()
+    let onMoveToSpecificLocation: PassthroughSubject<Place, Never> = .init()
     
     override init() {
         super.init()
@@ -78,10 +78,13 @@ final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelega
         }
     }
     
+    /// 현재 나의 위치 얻기
+    func getMyLocation() -> (latitude: Double?, longitude: Double?) {
+        return locationManager.getCoordinates()
+    }
+    
     /// SpecificLocation으로 이동하기
-    func moveToSpecificLocation(location : SearchMockData) {
-        Logger.debug("moveToSpecificLocation lat: \(location.latitude), lng: \(location.longitude) ✅✅✅✅")
-        
+    func moveToSpecificLocation(location : Place) {        
         ///let specificLocation = NMGLatLng(lat: 37.566610, lng: 126.978388)
         let specificLocation = NMGLatLng(lat: location.latitude, lng: location.longitude)
         let cameraUpdate = NMFCameraUpdate(position: NMFCameraPosition(specificLocation, zoom: 15))
@@ -131,9 +134,9 @@ final class NaverMapManager : NSObject, ObservableObject, NMFMapViewCameraDelega
     }
     
     /// 특정위치에 Specific Marker 생성하기
-    private func setSpecificLocationMaker(location : SearchMockData) {
+    private func setSpecificLocationMaker(location : Place) {
         specificMarker.position = NMGLatLng(lat: location.latitude, lng: location.longitude)
-        specificMarker.captionText = location.placeName
+        specificMarker.captionText = location.name
         specificMarker.captionTextSize = 12
         specificMarker.captionColor = UIColor(hexCode: ColorSystem.grayG800.uIntToString)
         specificMarker.captionHaloColor = UIColor(hexCode: ColorSystem.white.uIntToString)

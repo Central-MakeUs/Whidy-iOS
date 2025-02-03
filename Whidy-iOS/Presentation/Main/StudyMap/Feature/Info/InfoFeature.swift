@@ -14,6 +14,7 @@ struct InfoFeautre {
     struct State : Equatable {
         let id = UUID()
         var currentPlace : Place = .init()
+        var currentCafe : Cafe = .init()
     }
     
     enum Action : BindableAction {
@@ -78,6 +79,7 @@ extension InfoFeautre {
             switch action {
             case let .networkResponse(.cafe(.success(cafe))):
                 Logger.debug("cafe success 🤔 \(cafe)")
+                state.currentCafe = cafe
                 
             case let .networkResponse(.cafe(.failure(error))):
                 let errorType = APIError.networkErrorType(error: error)

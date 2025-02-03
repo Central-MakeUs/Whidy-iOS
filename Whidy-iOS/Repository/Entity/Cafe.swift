@@ -13,9 +13,9 @@ struct Cafe: Identifiable, Equatable {
     let address: String
     let latitude: Double
     let longitude: Double
-    let beveragePrice: Int?
-    let reviewNum: Int?
-    let reviewScore: Double?
+    let beveragePrice: String
+    let reviewNum: String
+    let reviewScore: String
     let placeType: PlaceType
     let additionalInfo: AdditionalInfo
     let businessHours: [BusinessHour]
@@ -55,9 +55,9 @@ extension Cafe {
         self.address = dto.address
         self.latitude = dto.latitude
         self.longitude = dto.longitude
-        self.beveragePrice = dto.beveragePrice
-        self.reviewNum = dto.reviewNum
-        self.reviewScore = dto.reviewScore
+        self.beveragePrice = String(dto.beveragePrice)
+        self.reviewNum = String(dto.reviewNum)
+        self.reviewScore = String(dto.reviewScore ?? 0)
         self.placeType = PlaceType(rawValue: dto.placeType) ?? .generalCafe
         self.additionalInfo = dto.additionalInfo
         self.businessHours = dto.businessHours
