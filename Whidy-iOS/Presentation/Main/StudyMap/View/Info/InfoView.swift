@@ -21,7 +21,6 @@ struct InfoView: View {
                     Color.clear
                         .preference(key: ScrollOffsetPreferenceKey.self, value: geometry.frame(in: .global).minY)
                 }
-                .frame(height: 0)
                 
                 Capsule()
                     .frame(width: 34, height: 3)
@@ -37,7 +36,7 @@ struct InfoView: View {
             }
             .background(Color.white)
             .onAppear {
-                Logger.debug("\(store.currentPlace) ✅")
+                store.send(.viewTransition(.onAppear))
             }
         }
     }

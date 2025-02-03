@@ -12,7 +12,8 @@ struct CafeDTO: Decodable {
     let id: Int
     let name, address: String
     let latitude, longitude: Double
-    let beveragePrice, reviewNum, reviewScore: Int
+    let beveragePrice, reviewNum : Int
+    let reviewScore: Double?
     let placeType: String
     let additionalInfo: AdditionalInfo
     let businessHours: [BusinessHour]

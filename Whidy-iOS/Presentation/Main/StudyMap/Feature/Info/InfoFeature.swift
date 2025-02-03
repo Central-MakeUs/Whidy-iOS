@@ -29,7 +29,7 @@ struct InfoFeautre {
     }
     
     enum NetworkReponse {
-        
+        case cafe(Result<Cafe, APIError>)
     }
     
     enum ButtonTapped {
@@ -47,16 +47,47 @@ struct InfoFeautre {
         
         BindingReducer()
         
+        viewTransition()
+        networkResponseReducer()
+    }
+}
+
+extension InfoFeautre {
+    func viewTransition() -> some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-            
+            case .viewTransition(.onAppear):
+                Logger.debug("InfoView onAppear 🤔")
                 
-            default :
+                return .run { [id = state.currentPlace.id] send in
+                    await send(.networkResponse(.cafe(
+                        networkManager.getGeneralCafePlace(id: id)
+                    )))
+                }
+                
+            default:
                 break
             }
+            
+            return .none
+        }
+    }
+    
+    func networkResponseReducer() -> some ReducerOf<Self> {
+        Reduce { state, action in
+            switch action {
+            case let .networkResponse(.cafe(.success(cafe))):
+                Logger.debug("cafe success 🤔 \(cafe)")
+                
+            case let .networkResponse(.cafe(.failure(error))):
+                let errorType = APIError.networkErrorType(error: error)
+                Logger.error("\(error) ->>🤔 \(errorType), \(error.errorMessage)")
+                
+            default:
+                break
+            }
+            
             return .none
         }
     }
 }
-
-

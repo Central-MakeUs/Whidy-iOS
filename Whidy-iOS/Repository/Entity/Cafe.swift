@@ -57,7 +57,7 @@ extension Cafe {
         self.longitude = dto.longitude
         self.beveragePrice = dto.beveragePrice
         self.reviewNum = dto.reviewNum
-        self.reviewScore = Double(dto.reviewScore)
+        self.reviewScore = dto.reviewScore
         self.placeType = PlaceType(rawValue: dto.placeType) ?? .generalCafe
         self.additionalInfo = dto.additionalInfo
         self.businessHours = dto.businessHours
