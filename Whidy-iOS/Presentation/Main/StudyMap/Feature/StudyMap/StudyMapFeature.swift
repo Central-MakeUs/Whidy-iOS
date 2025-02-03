@@ -14,10 +14,10 @@ struct StudyMapFeature {
     struct State : Equatable {
         let id = UUID()
         var filterCase : [MapFilterCase] =  MapFilterCase.getAllFilters()
+        var placeList : [Place] = .init()
+        var placeSpecific : Place = .init()
         
         var isSpecificLocation : Bool = false
-        var specificLocation : SearchMockData = .init()
-        
         var isShowInfoDetial : Bool = false
     }
     
@@ -37,10 +37,11 @@ struct StudyMapFeature {
     }
     
     enum NetworkReponse {
-        
+        case place(Result<[Place], APIError>)
     }
     
     enum ButtonTapped {
+        case tag(MapFilterCase)
         case search
         case specificLocationToSearch
         case specificLocationCancel
@@ -48,9 +49,9 @@ struct StudyMapFeature {
     
     enum MapProvider {
         case registerPublisher
-        case onMoveToSpecificLocation(SearchMockData)
+        case onMoveToSpecificLocation(Place)
     }
-
+    
     @Dependency(\.networkManager) var networkManager
     @Dependency(\.naverMapManager) var naverMapManager
     
@@ -59,6 +60,7 @@ struct StudyMapFeature {
         BindingReducer()
         
         viewtransitionReducer()
+        networkResponseReducer()
         buttonTappedReducer()
         mapProviderReducer()
     }
@@ -85,6 +87,19 @@ extension StudyMapFeature {
     func buttonTappedReducer() -> some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
+            case let .buttonTapped(.tag(placeType)):
+                Logger.debug("placeType: \(placeType), myLocation - \(naverMapManager.getMyLocation())")
+                let myLocation = naverMapManager.getMyLocation()
+                guard let lat = myLocation.latitude , let lng = myLocation.longitude else { return .none }
+                let condition = PlaceSearchCondition(placeType: [placeType.placeType], centerLatitude: lat, centerLongitude: lng, radius: placeType.placeRadius)
+                
+                Logger.debug("condition: \(condition)")
+                
+                return .run { send in
+                    await send(.networkResponse(.place(
+                        networkManager.getPlace(condition: condition))))
+                }
+                
             case .buttonTapped(.search):
                 return .run { send in
                     await send(.viewTransition(.goToSearch))
@@ -100,8 +115,27 @@ extension StudyMapFeature {
             case .buttonTapped(.specificLocationCancel):
                 state.isSpecificLocation = false
                 state.isShowInfoDetial = false
-                state.specificLocation = .init()
+                state.placeSpecific = .init()
                 naverMapManager.cancelSpecificLocation()
+                
+            default:
+                break
+            }
+            
+            return .none
+        }
+    }
+    
+    func networkResponseReducer() -> some ReducerOf<Self> {
+        Reduce { state, action in
+            switch action {
+            case let .networkResponse(.place(.success(placeList))):
+                Logger.debug(placeList)
+                state.placeList = placeList
+                
+            case let .networkResponse(.place(.failure(error))):
+                let errorType = APIError.networkErrorType(error: error)
+                Logger.error("\(error) ->>🤔 \(errorType), \(error.errorMessage)")
                 
             default:
                 break
@@ -121,7 +155,7 @@ extension StudyMapFeature {
                 Logger.debug("studyMapFeature onMoveToSpecificLocation \(location) ✅✅✅✅")
                 state.isSpecificLocation = true
                 state.isShowInfoDetial = true
-                state.specificLocation = location                
+                state.placeSpecific = location
                 
             default:
                 break

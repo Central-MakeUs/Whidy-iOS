@@ -19,7 +19,7 @@ struct SearchFeature {
         var isOnSearchResult : Bool = false
         
         /// mock Data
-        var searchResult : [SearchMockData] = [.init(placeName: "GOC커피", address: "테라타워 A동, 지하1층 G109호 167 송파대로 문정동, 송파구 서울특별시", latitude: 37.4849488, longitude: 127.1208004), .init(placeName: "문정커피", address: "문정동 법조프라자 96 KR 서울특별시 송파구 서울시 송파구 법원로", latitude: 37.4840354, longitude: 127.1210696)]
+        var searchResult : [Place] = .init()
     }
     
     enum Action : BindableAction {
@@ -33,11 +33,11 @@ struct SearchFeature {
     enum ViewTransition {
         case onAppear
         case goToBack
-        case goToResultLocation(SearchMockData)
+        case goToResultLocation(Place)
     }
     
     enum NetworkReponse {
-        
+        case place(Result<[Place], APIError>)
     }
     
     enum ButtonTapped {
@@ -57,6 +57,7 @@ struct SearchFeature {
         BindingReducer()
 
         buttonTappedReducer()
+        networkResponseReducer()
         anyActionReducer()
     }
 }
@@ -71,14 +72,38 @@ extension SearchFeature {
                 
             //TODO: - onSubmit 실행시, API 호출 진행되어야 함
             case .buttonTapped(.userInputSubmit):
+                //TODO: - 검색어 없다고 toast나 popup필요
                 Logger.debug("userInputSubmit - \(state.userInput)")
+                if state.userInput.isEmpty { return .none }
                 
+                //TODO: - 에러 메세지 필요
+                let myLocation = naverMapManager.getMyLocation()
+                guard let lat = myLocation.latitude , let lng = myLocation.longitude else { return .none }
+                let condition = PlaceSearchCondition(centerLatitude: lat, centerLongitude: lng, radius: 99999, keyword: state.userInput) /// 검색이 radius 제한 해제
+                                
                 state.isOnSearchResult = true
                 state.isSearchSuccess = true
                 
                 return .run { send in
-                    //TODO: - API 연동이후, 데이터 저장 필요
+                    await send(.networkResponse(.place(
+                        networkManager.getPlace(condition: condition)
+                    )))
                 }
+                
+            default:
+                break
+            }
+            
+            return .none
+        }
+    }
+    
+    func networkResponseReducer() -> some ReducerOf<Self> {
+        Reduce { state, action in
+            switch action {
+            case let .networkResponse(.place(.success(placeList))):
+                Logger.debug(placeList)
+                state.searchResult = placeList
                 
             default:
                 break
@@ -97,6 +122,7 @@ extension SearchFeature {
                 state.isHideLatestSearch = isEditing
                 state.isSearchSuccess = isEditing
                 state.isOnSearchResult = !isEditing
+                state.searchResult = .init()
                 
             default:
                 break
@@ -106,13 +132,3 @@ extension SearchFeature {
         }
     }
 }
-
-//MARK: - MockData
-struct SearchMockData : Equatable, Identifiable {
-    let id : UUID = UUID()
-    var placeName : String = .init()
-    var address : String = .init()
-    var latitude : Double = .init()
-    var longitude : Double = .init()
-}
-

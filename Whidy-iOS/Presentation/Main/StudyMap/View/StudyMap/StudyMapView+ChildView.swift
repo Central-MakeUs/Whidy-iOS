@@ -11,13 +11,13 @@ extension StudyMapView {
     var specificSearchBtn : some View {
         VStack {
             HStack(spacing:0){
-                TextField("", text: $store.specificLocation.placeName)
+                TextField("", text: $store.placeSpecific.name)
                     .padding(.leading, 16) // 왼쪽 패딩 추가
                     .frame(height: 38) // 고정 높이 설정
                     .background(
                         HStack {
                             Text("")
-                                .fontModifier(fontSize: 16, weight: .semibold, color: ColorSystem.grayG300.rawValue)
+                                .fontModifier(fontSize: 16, weight: .bold, color: ColorSystem.grayG300.rawValue)
                                 .padding(.leading, 16) // 플레이스홀더 왼쪽 패딩
                             Spacer()
                         }
@@ -94,6 +94,11 @@ extension StudyMapView {
                             RoundedRectangle(cornerRadius: 17)
                                 .fill(Color(hex: ColorSystem.grayG100.rawValue))
                         )
+                        .onTapGesture {
+                            Logger.debug(item.placeType)
+                            guard let placeType = MapFilterCase(from: item.placeType) else { return }
+                            store.send(.buttonTapped(.tag(placeType)))
+                        }
                 }
             }
             .padding(.horizontal, 14)

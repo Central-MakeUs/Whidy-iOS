@@ -45,7 +45,7 @@ extension SearchView {
             LazyVStack(spacing: 10) { // 항목 간 간격 설정
                 ForEach(store.searchResult, id: \.id) { item in
                     VStack(spacing: 3) {
-                        Text(item.placeName)
+                        Text(item.name)
                             .fontModifier(fontSize: 14, weight: .bold, color: ColorSystem.black.rawValue)
                             .align(.leading)
                         Text(item.address)
