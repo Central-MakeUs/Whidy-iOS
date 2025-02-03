@@ -27,7 +27,7 @@ final class AuthInterceptor : RequestAdapter, RequestRetrier, RequestInterceptor
 
         Task {
             let response = await NetworkManager.shared.refresh()
-            Logger.debug("AuthToken Refresh Success ✅✅✅")
+            Logger.debug("AuthToken Refresh Success ✅✅✅ - \(response)")
             switch response {
             case let .success(token):
                 Defaults.accessToken = token.accessToken

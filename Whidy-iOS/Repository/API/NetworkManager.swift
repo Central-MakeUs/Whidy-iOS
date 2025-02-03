@@ -68,13 +68,13 @@ final class NetworkManager : Sendable {
                     switch response.result {
                     case let .success(res):
                         continuation.resume(returning: res)
-//                        self.useResponseLog(data: response.data!) // Response가 너무 길어서 에러 발생함
+                        self.useResponseLog(data: response.data!)
                         
                     //FIXME: - Error Handligng 필요
                     case let .failure(error):
                         Logger.error(error)
+                        self.useResponseLog(data: response.data!, error: true)
                         if let errorData = response.data {
-                            self.useResponseLog(data: response.data!, error: true)
                             do {
                                 let networkError = try JSONDecoder().decode(ErrorResponse.self, from: errorData)
                                 let apiError = APIError(error: networkError)

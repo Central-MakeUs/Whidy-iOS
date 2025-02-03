@@ -51,6 +51,8 @@ extension AuthRouter : TargetType {
     
     var header: [String : String] {
         switch self {
+        case .refresh:
+            return adpatRefresh()
         default:
             return adpat()
         }
