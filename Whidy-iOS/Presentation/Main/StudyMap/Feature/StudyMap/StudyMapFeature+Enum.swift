@@ -30,10 +30,17 @@ enum MapFilterCase : CaseIterable, Hashable, Identifiable {
         switch self {
         case .FREE_STUDY_SPACE : return "FREE_STUDY_SPACE"
         case .FRANCHISE_CAFE : return "FRANCHISE_CAFE"
-        case .GENERAL_CAFE : return "STUDY_CAFE"
+        case .GENERAL_CAFE : return "GENERAL_CAFE"
         case .STUDY_CAFE : return "STUDY_CAFE"
 //        case .FREE_CLOTHES_RENTAL: return "FREE_CLOTHES_RENTAL"
 //        case .FREE_PICTURE: return "FREE_PICTURE"
+        }
+    }
+    
+    var placeRadius : Double {
+        switch self {
+        case .FREE_STUDY_SPACE : return 9999999 /// 반경 제한 없음
+        default: return 5000 /// 5km, naverMak 줌 레벨 14정도
         }
     }
     
