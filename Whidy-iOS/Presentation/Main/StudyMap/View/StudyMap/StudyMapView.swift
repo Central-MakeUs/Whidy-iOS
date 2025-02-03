@@ -41,7 +41,7 @@ struct StudyMapView: View {
             }
             .overlay {
                 if store.isShowInfoDetial {
-                    InfoView()
+                    InfoView(store: store.scope(state: \.info, action: \.info))
                         .clipShape(RoundedRectangle(cornerRadius: 22))
                         .disabled(true)
                         .frame(width:UIScreen.main.bounds.width, height: UIScreen.main.bounds.size.height)

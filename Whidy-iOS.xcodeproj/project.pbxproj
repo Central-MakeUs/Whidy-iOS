@@ -140,6 +140,7 @@
 		6BF2D98A2D4FA76500252A43 /* NetworkManager+Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2D9892D4FA76500252A43 /* NetworkManager+Place.swift */; };
 		6BF2D98D2D4FA83E00252A43 /* PlaceDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2D98C2D4FA83E00252A43 /* PlaceDTO.swift */; };
 		6BF2D98F2D4FA84A00252A43 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2D98E2D4FA84A00252A43 /* Place.swift */; };
+		6BF2D9912D5071F700252A43 /* InfoFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2D9902D5071F700252A43 /* InfoFeature.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -279,6 +280,7 @@
 		6BF2D9892D4FA76500252A43 /* NetworkManager+Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkManager+Place.swift"; sourceTree = "<group>"; };
 		6BF2D98C2D4FA83E00252A43 /* PlaceDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDTO.swift; sourceTree = "<group>"; };
 		6BF2D98E2D4FA84A00252A43 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		6BF2D9902D5071F700252A43 /* InfoFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoFeature.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -842,6 +844,7 @@
 		6BF2D9572D4F430C00252A43 /* Info */ = {
 			isa = PBXGroup;
 			children = (
+				6BF2D9902D5071F700252A43 /* InfoFeature.swift */,
 				6BF2D9592D4F433900252A43 /* InfoDetailFeature.swift */,
 			);
 			path = Info;
@@ -1051,6 +1054,7 @@
 				6B6276732D35F02B00843C9E /* NetworkManager+Auth.swift in Sources */,
 				6B6276A32D361D1400843C9E /* OnboardingScreen+Identifiable.swift in Sources */,
 				6B6276782D35F02B00843C9E /* APIError.swift in Sources */,
+				6BF2D9912D5071F700252A43 /* InfoFeature.swift in Sources */,
 				6B62769B2D3619B500843C9E /* RootCoordinator.swift in Sources */,
 				6B62767C2D35F02B00843C9E /* NetworkManager.swift in Sources */,
 				6B6220712D37A8AF00C5F2C8 /* MainCoordinator.swift in Sources */,

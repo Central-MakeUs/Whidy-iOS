@@ -13,6 +13,7 @@ struct StudyMapFeature {
     @ObservableState
     struct State : Equatable {
         let id = UUID()
+        var info = InfoFeautre.State() /// child View
         var filterCase : [MapFilterCase] =  MapFilterCase.getAllFilters()
         var placeList : [Place] = .init()
         var placeSpecific : Place = .init()
@@ -23,6 +24,7 @@ struct StudyMapFeature {
     
     enum Action : BindableAction {
         case binding(BindingAction<State>)
+        case info(InfoFeautre.Action)
         case viewTransition(ViewTransition)
         case networkResponse(NetworkReponse)
         case buttonTapped(ButtonTapped)
@@ -58,6 +60,10 @@ struct StudyMapFeature {
     var body : some ReducerOf<Self> {
         
         BindingReducer()
+        
+        Scope(state: \.info, action: \.info) {
+            InfoFeautre()
+        }
         
         viewtransitionReducer()
         networkResponseReducer()
@@ -153,6 +159,7 @@ extension StudyMapFeature {
                 
             case let .mapProvider(.onMoveToSpecificLocation(location)):
                 Logger.debug("studyMapFeature onMoveToSpecificLocation \(location) ✅✅✅✅")
+                state.info.currentPlace = location
                 state.isSpecificLocation = true
                 state.isShowInfoDetial = true
                 state.placeSpecific = location
